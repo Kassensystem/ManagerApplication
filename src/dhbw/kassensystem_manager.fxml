@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dhbw.KassensystemManagerController">
+   <children>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Datei">
+            <items>
+                  <MenuItem fx:id="refreshDataMenu" mnemonicParsing="false" onAction="#refreshData" text="Daten aktualisieren" />
+                  <MenuItem fx:id="pushDataMenu" mnemonicParsing="false" onAction="#pushData" text="Daten übertragen" />
+              <MenuItem fx:id="closeMenu" mnemonicParsing="false" onAction="#closeProgram" text="Programm beenden" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Bearbeiten">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Löschen" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Ansicht">
+              <items>
+                <MenuItem fx:id="fullscreenMenu" mnemonicParsing="false" onAction="#toggleFullscreen" text="Vollbild" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Hilfe">
+            <items>
+              <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#openAbout" text="Über Kassensystem-Manager" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <tabs>
+          <Tab text="Bestellungen">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="orderTable" layoutX="233.0" layoutY="84.0" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="orderTableIDColumn" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="orderTableItemsColumn" prefWidth="144.0" text="Artikel" />
+                              <TableColumn fx:id="orderTablePriceColumn" prefWidth="57.0" text="Preis" />
+                              <TableColumn fx:id="orderTableTableColumn" prefWidth="75.0" text="Tisch" />
+                              <TableColumn fx:id="orderTableDateColumn" prefWidth="141.0" text="Datum - Uhrzeit" />
+                          </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Löschen" />
+                                    <MenuItem fx:id="printOrderMenu" mnemonicParsing="false" onAction="#printOrder" text="Ausdrucken" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Artikel">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="itemTable" layoutX="124.0" layoutY="60.0" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                              <TableColumn fx:id="itemTableIDColumn" prefWidth="57.0" text="ID" />
+                            <TableColumn fx:id="itemTableNameColumn" editable="false" prefWidth="163.0" text="Name" />
+                            <TableColumn fx:id="itemTableRetailpriceColumn" editable="false" prefWidth="97.0" text="Verkaufspreis" />
+                              <TableColumn fx:id="itemTableQuantityColumn" editable="false" prefWidth="83.0" text="Anzahl" />
+                          </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Löschen" />
+                                    <MenuItem mnemonicParsing="false" text="Bearbeiten" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Tische">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableTable" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="tableTableIDColumn" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="tableTableNameColumn" prefWidth="111.0" text="Bezeichnung" />
+                          </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Löschen" />
+                                    <MenuItem mnemonicParsing="false" text="Bearbeiten" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

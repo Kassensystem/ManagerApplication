@@ -1,10 +1,14 @@
 package dhbw;
 
 import dhbw.datamodel.ItemModel;
+import dhbw.datamodel.ItemdeliveryModel;
 import dhbw.datamodel.OrderModel;
 import dhbw.datamodel.TableModel;
 import dhbw.sa.databaseApplication.database.DatabaseService;
 import dhbw.sa.databaseApplication.database.entity.Item;
+import dhbw.sa.databaseApplication.database.entity.Itemdelivery;
+import dhbw.sa.databaseApplication.database.entity.Order;
+import dhbw.sa.databaseApplication.database.entity.Table;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +17,7 @@ import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 
 import java.net.URL;
@@ -26,6 +31,9 @@ public class KassensystemManagerController implements Initializable{
     private DatabaseService databaseService = new DatabaseService();
 
     public MenuItem printOrderMenu;
+
+
+
 
     public TableView itemTable;
     public TableColumn itemTableIDColumn;
@@ -44,8 +52,19 @@ public class KassensystemManagerController implements Initializable{
     public TableColumn orderTableTableColumn;
     public TableColumn orderTableDateColumn;
 
+    public TableView itemdeliveryTable;
+    public TableColumn itemdeliveryTableIDColumn;
+    public TableColumn itemdeliveryTableItemColumn;
+    public TableColumn itemdeliveryTableQuantityColumn;
+
+
     public TextField itemNameLabel;
     public TextField itemRetailpriceLabel;
+    public TextField itemQuantityLabel;
+
+    public Label itemIDLabel;
+    public TextField editItemNameLabel;
+    public TextField editItemRetailpriceLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,34 +102,47 @@ public class KassensystemManagerController implements Initializable{
             sortColumnOrderTable = (TableColumn) orderTable.getSortOrder().get(0);
             sortTypeOrderTable = sortColumnOrderTable.getSortType();
         }
+        //Wareneingänge
+        TableColumn sortColumnItemdeliveryTable = null;
+        TableColumn.SortType sortTypeItemdeliveryTable = null;
+        if(!itemdeliveryTable.getSortOrder().isEmpty()) {
+            sortColumnItemdeliveryTable = (TableColumn) itemdeliveryTable.getSortOrder().get(0);
+            sortTypeItemdeliveryTable = sortColumnItemdeliveryTable.getSortType();
+        }
         //endregion
 
         //region Daten abrufen
         //Items
         ObservableList<ItemModel> itemData = FXCollections.observableArrayList();
-        ArrayList<dhbw.sa.databaseApplication.database.entity.Item> allItems = databaseService.getAllItems();
-        for(dhbw.sa.databaseApplication.database.entity.Item i: allItems) {
+        ArrayList<Item> allItems = databaseService.getAllItems();
+        for(Item i: allItems) {
             if(i.isAvailable())
                 itemData.add(new ItemModel(i.getItemID(), i.getName(), i.getRetailprice(), i.getQuantity()));
         }
         //Tables
         ObservableList<TableModel> tableData = FXCollections.observableArrayList();
-        ArrayList<dhbw.sa.databaseApplication.database.entity.Table> allTables = databaseService.getAllTables();
-        for(dhbw.sa.databaseApplication.database.entity.Table t: allTables) {
+        ArrayList<Table> allTables = databaseService.getAllTables();
+        for(Table t: allTables) {
             if(t.isAvailable())
                 tableData.add(new TableModel(t.getTableID(), t.getName()));
         }
         //Orders
         ObservableList<OrderModel> orderData = FXCollections.observableArrayList();
-        ArrayList<dhbw.sa.databaseApplication.database.entity.Order> allOrders = databaseService.getAllOrders();
-        for(dhbw.sa.databaseApplication.database.entity.Order o: allOrders) {
+        ArrayList<Order> allOrders = databaseService.getAllOrders();
+        for(Order o: allOrders) {
             String items = "";
-            for(dhbw.sa.databaseApplication.database.entity.Item i: o.getItems(allItems)) {
+            for(Item i: o.getItems(allItems)) {
                 items += i.getName() + "\n";
             }
             String tableName = o.getTable(allTables).getName();
 
             orderData.add(new OrderModel(o.getOrderID(), items, o.getPrice(), o.getDate().toString("dd.MM.yyyy kk:mm:ss"), tableName));
+        }
+        //Itemdeliveries
+        ObservableList<ItemdeliveryModel> itemdeliveryData = FXCollections.observableArrayList();
+        ArrayList<Itemdelivery> allItemdeliveries = databaseService.getAllItemdeliveries();
+        for(Itemdelivery i: allItemdeliveries) {
+            itemdeliveryData.add(new ItemdeliveryModel(i.getItemdeliveryID(), i.getItemID(), i.getQuantity()));
         }
         //endregion
 
@@ -132,9 +164,15 @@ public class KassensystemManagerController implements Initializable{
         orderTableTableColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("table"));
         orderTableDateColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("date"));
 
+        //Tabelle Wareneingang befüllen
+        itemdeliveryTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemdeliveryID"));
+        itemdeliveryTableItemColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemID"));
+        itemdeliveryTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("quantity"));
+
         itemTable.setItems(itemData);
         tableTable.setItems(tableData);
         orderTable.setItems(orderData);
+        itemdeliveryTable.setItems(itemdeliveryData);
         //endregion
 
         //region Gesicherte Sortierung wieder anwenden
@@ -155,6 +193,12 @@ public class KassensystemManagerController implements Initializable{
             orderTable.getSortOrder().add(sortColumnOrderTable);
             sortColumnOrderTable.setSortType(sortTypeOrderTable);
             sortColumnOrderTable.setSortable(true);
+        }
+        //Itemdeliveries
+        if(sortColumnItemdeliveryTable != null) {
+            itemdeliveryTable.getSortOrder().add(sortColumnItemdeliveryTable);
+            sortColumnItemdeliveryTable.setSortType(sortTypeItemdeliveryTable);
+            sortColumnItemdeliveryTable.setSortable(true);
         }
         //endregion
 
@@ -199,15 +243,43 @@ public class KassensystemManagerController implements Initializable{
     }
 
     public void editItem(ActionEvent actionEvent) {
+        int itemID = Integer.parseInt(itemIDLabel.getText());
+        Item oldItem = databaseService.getItemById(itemID);
+        oldItem.setAvailable(false);
+        databaseService.updateItem(itemID, oldItem);
 
+        String name = editItemNameLabel.getText();
+        double retailprice = Double.parseDouble(editItemRetailpriceLabel.getText());
+        int quantity = oldItem.getQuantity();
+        Item newItem = new Item(name, retailprice, quantity, true);
+        databaseService.addItem(newItem);
+
+        this.refreshData();
+
+    }
+    public void selectEditItem(MouseEvent mouseEvent) {
+        Object i = itemTable.getSelectionModel().getSelectedItem();
+        int itemID = ((ItemModel) i).getItemID();
+        Item item = databaseService.getItemById(itemID);
+        double retailprice = item.getRetailprice();
+        itemIDLabel.setText("" + item.getItemID());
+        editItemNameLabel.setText(item.getName());
+        editItemRetailpriceLabel.setText("" + retailprice);
     }
 
     public void addItem(ActionEvent actionEvent) {
-        if(itemRetailpriceLabel.getCharacters() != null && itemNameLabel.getCharacters() != null) {
-            String name = itemNameLabel.getCharacters().toString();
-            Double retailprice = Double.parseDouble(itemRetailpriceLabel.getCharacters().toString());
-            Item newItem = new Item(name, retailprice, 30, true);
+        String retailprice = itemRetailpriceLabel.getCharacters().toString();
+        itemRetailpriceLabel.clear();
+        String name = itemNameLabel.getCharacters().toString();
+        itemNameLabel.clear();
+        String quantity = itemQuantityLabel.getCharacters().toString();
+        itemQuantityLabel.clear();
+
+        if(retailprice != null && name != null && quantity != null) {
+            Item newItem = new Item(name, Double.parseDouble(retailprice), Integer.parseInt(quantity), true);
+            databaseService.addItem(newItem);
         }
+        this.refreshData();
     }
 
     /*******Table*******/

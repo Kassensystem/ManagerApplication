@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Order {
+public class OrderModel {
     private final SimpleIntegerProperty orderID;
     private final SimpleStringProperty items;
     private final SimpleDoubleProperty price;
@@ -12,7 +12,7 @@ public class Order {
     private final SimpleStringProperty table;
 
 
-    public Order(int orderID, String items, double price, String date, String table) {
+    public OrderModel(int orderID, String items, double price, String date, String table) {
         this.orderID = new SimpleIntegerProperty(orderID);
         this.items = new SimpleStringProperty(items);
         this.price = new SimpleDoubleProperty(price);

@@ -3,11 +3,11 @@ package dhbw.datamodel;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Table {
+public class TableModel {
     private final SimpleIntegerProperty tableID;
     private final SimpleStringProperty name;
 
-    public Table(int tableID, String name) {
+    public TableModel(int tableID, String name) {
         this.tableID = new SimpleIntegerProperty(tableID);
         this.name = new SimpleStringProperty(name);
     }

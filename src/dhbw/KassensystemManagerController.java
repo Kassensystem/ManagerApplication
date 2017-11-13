@@ -30,21 +30,8 @@ public class KassensystemManagerController implements Initializable{
 
     private DatabaseService databaseService = new DatabaseService();
 
-    public MenuItem printOrderMenu;
 
-
-
-
-    public TableView itemTable;
-    public TableColumn itemTableIDColumn;
-    public TableColumn itemTableNameColumn;
-    public TableColumn itemTableRetailpriceColumn;
-    public TableColumn itemTableQuantityColumn;
-
-    public TableView tableTable;
-    public TableColumn tableTableIDColumn;
-    public TableColumn tableTableNameColumn;
-
+    /****Order-Tab****/
     public TableView orderTable;
     public TableColumn orderTableIDColumn;
     public TableColumn orderTableItemsColumn;
@@ -52,11 +39,15 @@ public class KassensystemManagerController implements Initializable{
     public TableColumn orderTableTableColumn;
     public TableColumn orderTableDateColumn;
 
-    public TableView itemdeliveryTable;
-    public TableColumn itemdeliveryTableIDColumn;
-    public TableColumn itemdeliveryTableItemColumn;
-    public TableColumn itemdeliveryTableQuantityColumn;
 
+    /****Item-Tab****/
+    public SplitPane itemSplitpane;
+
+    public TableView itemTable;
+    public TableColumn itemTableIDColumn;
+    public TableColumn itemTableNameColumn;
+    public TableColumn itemTableRetailpriceColumn;
+    public TableColumn itemTableQuantityColumn;
 
     public TextField itemNameLabel;
     public TextField itemRetailpriceLabel;
@@ -65,6 +56,36 @@ public class KassensystemManagerController implements Initializable{
     public Label itemIDLabel;
     public TextField editItemNameLabel;
     public TextField editItemRetailpriceLabel;
+
+    /****Itemdelivery-Tab****/
+    public TableView itemdeliveryTable;
+    public TableColumn itemdeliveryTableIDColumn;
+    public TableColumn itemdeliveryTableItemIDColumn;
+    public TableColumn itemdeliveryTableItemNameColumn;
+    public TableColumn itemdeliveryTableQuantityColumn;
+
+    public Label addItemdeliveryItemIDLabel;
+    public Label addItemdeliveryItemNameLabel;
+    public TextField addItemdeliveryQuantityField;
+
+    /****Table-Tab****/
+    public SplitPane tableSplitPane;
+
+    public TableView tableTable;
+    public TableColumn tableTableIDColumn;
+    public TableColumn tableTableNameColumn;
+
+    public TextField editTableNameField;
+    public Label editTableDLabel;
+
+    public TextField addTableNameField;
+
+
+
+    private ArrayList<Order> allOrders;
+    private ArrayList<Item> allItems;
+    private ArrayList<Table> allTables;
+    private ArrayList<Itemdelivery> allItemdeliveries;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,142 +101,197 @@ public class KassensystemManagerController implements Initializable{
     public void refreshData() {
         DecimalFormat df = new DecimalFormat("#0.00");
 
-        //region Sortierung sichern
-        //Items
-        TableColumn sortColumnItemTable = null;
-        TableColumn.SortType sortTypeItemTable = null;
-        if(!itemTable.getSortOrder().isEmpty()) {
-            sortColumnItemTable = (TableColumn) itemTable.getSortOrder().get(0);
-            sortTypeItemTable = sortColumnItemTable.getSortType();
-        }
-        //Tables
-        TableColumn sortColumnTableTable = null;
-        TableColumn.SortType sortTypeTableTable = null;
-        if(!tableTable.getSortOrder().isEmpty()) {
-            sortColumnTableTable = (TableColumn) tableTable.getSortOrder().get(0);
-            sortTypeTableTable = sortColumnTableTable.getSortType();
-        }
-        //Orders
+        refreshOrderData();
+        refreshItemData();
+        refreshTableData();
+        refreshItemdeliveryData();
+
+    }
+
+    private void refreshOrderData() {
+        //Sortierung sichern
         TableColumn sortColumnOrderTable = null;
         TableColumn.SortType sortTypeOrderTable = null;
-        if(!orderTable.getSortOrder().isEmpty()) {
+        if (!orderTable.getSortOrder().isEmpty()) {
             sortColumnOrderTable = (TableColumn) orderTable.getSortOrder().get(0);
             sortTypeOrderTable = sortColumnOrderTable.getSortType();
         }
-        //Wareneingänge
-        TableColumn sortColumnItemdeliveryTable = null;
-        TableColumn.SortType sortTypeItemdeliveryTable = null;
-        if(!itemdeliveryTable.getSortOrder().isEmpty()) {
-            sortColumnItemdeliveryTable = (TableColumn) itemdeliveryTable.getSortOrder().get(0);
-            sortTypeItemdeliveryTable = sortColumnItemdeliveryTable.getSortType();
-        }
-        //endregion
-
-        //region Daten abrufen
-        //Items
-        ObservableList<ItemModel> itemData = FXCollections.observableArrayList();
-        ArrayList<Item> allItems = databaseService.getAllItems();
-        for(Item i: allItems) {
-            if(i.isAvailable())
-                itemData.add(new ItemModel(i.getItemID(), i.getName(), i.getRetailprice(), i.getQuantity()));
-        }
-        //Tables
-        ObservableList<TableModel> tableData = FXCollections.observableArrayList();
-        ArrayList<Table> allTables = databaseService.getAllTables();
-        for(Table t: allTables) {
-            if(t.isAvailable())
-                tableData.add(new TableModel(t.getTableID(), t.getName()));
-        }
-        //Orders
+        //Daten abrufen
         ObservableList<OrderModel> orderData = FXCollections.observableArrayList();
-        ArrayList<Order> allOrders = databaseService.getAllOrders();
-        for(Order o: allOrders) {
+        allOrders = databaseService.getAllOrders();
+        allItems = databaseService.getAllItems();
+        allTables = databaseService.getAllTables();
+        for (Order o : allOrders) {
             String items = "";
-            for(Item i: o.getItems(allItems)) {
+            for (Item i : o.getItems(allItems)) {
                 items += i.getName() + "\n";
             }
             String tableName = o.getTable(allTables).getName();
 
             orderData.add(new OrderModel(o.getOrderID(), items, o.getPrice(), o.getDate().toString("dd.MM.yyyy kk:mm:ss"), tableName));
         }
-        //Itemdeliveries
-        ObservableList<ItemdeliveryModel> itemdeliveryData = FXCollections.observableArrayList();
-        ArrayList<Itemdelivery> allItemdeliveries = databaseService.getAllItemdeliveries();
-        for(Itemdelivery i: allItemdeliveries) {
-            itemdeliveryData.add(new ItemdeliveryModel(i.getItemdeliveryID(), i.getItemID(), i.getQuantity()));
-        }
-        //endregion
-
-        //region Tabellen befüllen
-        //Tabelle ItemModel befüllen
-        itemTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("itemID"));
-        itemTableNameColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, String>("name"));
-        itemTableRetailpriceColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Double>("retailprice"));
-        itemTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("quantity"));
-
-        //Tabelle TableModel befüllen
-        tableTableIDColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("tableID"));
-        tableTableNameColumn.setCellValueFactory(new PropertyValueFactory<TableModel, String>("name"));
-
-        //Tabelle OrderModel befüllen
+        //Tabelle befüllen
         orderTableIDColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Integer>("orderID"));
         orderTableItemsColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("items"));
         orderTablePriceColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Double>("price"));
         orderTableTableColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("table"));
         orderTableDateColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("date"));
 
-        //Tabelle Wareneingang befüllen
-        itemdeliveryTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemdeliveryID"));
-        itemdeliveryTableItemColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemID"));
-        itemdeliveryTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("quantity"));
+        orderTable.setItems(orderData);
+        //Gesicherte Sortierung wieder anwenden
+        if (sortColumnOrderTable != null) {
+            orderTable.getSortOrder().add(sortColumnOrderTable);
+            sortColumnOrderTable.setSortType(sortTypeOrderTable);
+            sortColumnOrderTable.setSortable(true);
+        }
+    }
+
+    private void refreshItemData() {
+        //Sortierung sichern
+        TableColumn sortColumnItemTable = null;
+        TableColumn.SortType sortTypeItemTable = null;
+        if(!itemTable.getSortOrder().isEmpty()) {
+            sortColumnItemTable = (TableColumn) itemTable.getSortOrder().get(0);
+            sortTypeItemTable = sortColumnItemTable.getSortType();
+        }
+        //Daten abrufen
+        ObservableList<ItemModel> itemData = FXCollections.observableArrayList();
+        allItems = databaseService.getAllItems();
+        for(Item i: allItems) {
+            if(i.isAvailable())
+                itemData.add(new ItemModel(i.getItemID(), i.getName(), i.getRetailprice(), i.getQuantity()));
+        }
+        //Tabelle befüllen
+        itemTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("itemID"));
+        itemTableNameColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, String>("name"));
+        itemTableRetailpriceColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Double>("retailprice"));
+        itemTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("quantity"));
 
         itemTable.setItems(itemData);
-        tableTable.setItems(tableData);
-        orderTable.setItems(orderData);
-        itemdeliveryTable.setItems(itemdeliveryData);
-        //endregion
-
-        //region Gesicherte Sortierung wieder anwenden
-        //Items
+        //Gesicherte Sortierung wieder anwenden
         if(sortColumnItemTable != null) {
             itemTable.getSortOrder().add(sortColumnItemTable);
             sortColumnItemTable.setSortType(sortTypeItemTable);
             sortColumnItemTable.setSortable(true);
         }
-        //Tables
+
+    }
+
+    private void refreshTableData() {
+        //Sortierung sichern
+        TableColumn sortColumnTableTable = null;
+        TableColumn.SortType sortTypeTableTable = null;
+        if(!tableTable.getSortOrder().isEmpty()) {
+            sortColumnTableTable = (TableColumn) tableTable.getSortOrder().get(0);
+            sortTypeTableTable = sortColumnTableTable.getSortType();
+        }
+        //Daten abrufen
+        ObservableList<TableModel> tableData = FXCollections.observableArrayList();
+        allTables = databaseService.getAllTables();
+        for(Table t: allTables) {
+            if(t.isAvailable())
+                tableData.add(new TableModel(t.getTableID(), t.getName()));
+        }
+        //Tabelle befüllen
+        tableTableIDColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("tableID"));
+        tableTableNameColumn.setCellValueFactory(new PropertyValueFactory<TableModel, String>("name"));
+
+        tableTable.setItems(tableData);
+        //Gesicherte Sortierung wieder anwenden
         if(sortColumnTableTable != null) {
             tableTable.getSortOrder().add(sortColumnTableTable);
             sortColumnTableTable.setSortType(sortTypeTableTable);
             sortColumnTableTable.setSortable(true);
         }
-        //Orders
-        if(sortColumnOrderTable != null) {
-            orderTable.getSortOrder().add(sortColumnOrderTable);
-            sortColumnOrderTable.setSortType(sortTypeOrderTable);
-            sortColumnOrderTable.setSortable(true);
+    }
+
+    private void refreshItemdeliveryData() {
+        //Sortierung sichern
+        TableColumn sortColumnItemdeliveryTable = null;
+        TableColumn.SortType sortTypeItemdeliveryTable = null;
+        if(!itemdeliveryTable.getSortOrder().isEmpty()) {
+            sortColumnItemdeliveryTable = (TableColumn) itemdeliveryTable.getSortOrder().get(0);
+            sortTypeItemdeliveryTable = sortColumnItemdeliveryTable.getSortType();
         }
-        //Itemdeliveries
+        //Daten abrufen
+        ObservableList<ItemdeliveryModel> itemdeliveryData = FXCollections.observableArrayList();
+        allItemdeliveries = databaseService.getAllItemdeliveries();
+        allItems = databaseService.getAllItems();
+        Itemdelivery ide;
+        Item item = new Item();
+        for(int i = 0; i < allItemdeliveries.size(); i++) {
+            ide = allItemdeliveries.get(i);
+            int itemdeliveryID = ide.getItemID();
+            for(Item it: allItems) {
+                if(it.getItemID() == itemdeliveryID)
+                    item = it;
+            }
+            if (item.isAvailable()) {
+                String itemName = item.getName();
+                itemdeliveryData.add(new ItemdeliveryModel(ide.getItemdeliveryID(), ide.getItemID(), itemName, ide.getQuantity()));
+            }
+        }
+        //Tabelle befüllen
+        itemdeliveryTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemdeliveryID"));
+        itemdeliveryTableItemIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemID"));
+        itemdeliveryTableItemNameColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, String>("itemName"));
+        itemdeliveryTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("quantity"));
+
+        itemdeliveryTable.setItems(itemdeliveryData);
+        //Gesicherte Sortierung wieder anwenden
         if(sortColumnItemdeliveryTable != null) {
             itemdeliveryTable.getSortOrder().add(sortColumnItemdeliveryTable);
             sortColumnItemdeliveryTable.setSortType(sortTypeItemdeliveryTable);
             sortColumnItemdeliveryTable.setSortable(true);
         }
-        //endregion
 
     }
 
+
     public void closeProgram(ActionEvent actionEvent) {
+        Main.closeProgram();
     }
 
     public void toggleFullscreen(ActionEvent actionEvent) {
+        Main.toggleFullscreen();
+
+        if(Main.isFullscreen()) {
+            setMaximizedLayout();
+        }
+        else {
+            setSmallLayout();
+        }
+    }
+
+    private void setSmallLayout() {
+        itemSplitpane.setDividerPositions(0.65);
+        tableSplitPane.setDividerPositions(0.65);
+    }
+
+    private void setMaximizedLayout() {
+        itemSplitpane.setDividerPositions(0.8);
+        tableSplitPane.setDividerPositions(0.8);
+    }
+
+    private void setSplitPaneLayout() {
+        boolean maximized = Main.getPrimaryStage().isMaximized();
+        if(maximized)
+            setMaximizedLayout();
+        else
+            setSmallLayout();
     }
 
     public void openAbout(ActionEvent actionEvent) {
+
     }
 
 
-    //region Tabellen bearbeiten/hinzufügen/ausdrucken
     /*******Order********/
+    public void onOrderTabSelection(Event event) {
+        this.refreshOrderData();
+        setSplitPaneLayout();
+    }
+
     public void printOrder(ActionEvent actionEvent) {
         Object item = orderTable.getSelectionModel().getSelectedItem();
         int orderID = ((OrderModel) item).getOrderID();
@@ -233,83 +309,163 @@ public class KassensystemManagerController implements Initializable{
 
     }
 
-
     /*******Item******/
-    public void deleteItem(ActionEvent actionEvent) {
-        Object item = itemTable.getSelectionModel().getSelectedItem();
-        int itemID = ((ItemModel) item).getItemID();
-        databaseService.deleteItem(itemID);
-        this.refreshData();
+    public void onItemTabSelection(Event event) {
+        this.refreshItemData();
+        setSplitPaneLayout();
+        itemIDLabel.setText("");
+        editItemNameLabel.clear();
+        editItemRetailpriceLabel.clear();
+
+        addItemdeliveryItemIDLabel.setText("");
+        addItemdeliveryItemNameLabel.setText("");
+        addItemdeliveryQuantityField.clear();
     }
 
-    public void editItem(ActionEvent actionEvent) {
-        int itemID = Integer.parseInt(itemIDLabel.getText());
-        Item oldItem = databaseService.getItemById(itemID);
-        oldItem.setAvailable(false);
-        databaseService.updateItem(itemID, oldItem);
-
-        String name = editItemNameLabel.getText();
-        double retailprice = Double.parseDouble(editItemRetailpriceLabel.getText());
-        int quantity = oldItem.getQuantity();
-        Item newItem = new Item(name, retailprice, quantity, true);
-        databaseService.addItem(newItem);
-
-        this.refreshData();
-
-    }
-    public void selectEditItem(MouseEvent mouseEvent) {
+    public void selectItem(MouseEvent mouseEvent) {
         Object i = itemTable.getSelectionModel().getSelectedItem();
         int itemID = ((ItemModel) i).getItemID();
         Item item = databaseService.getItemById(itemID);
+        //Felder für Bearbeiten eines Items
         double retailprice = item.getRetailprice();
         itemIDLabel.setText("" + item.getItemID());
         editItemNameLabel.setText(item.getName());
         editItemRetailpriceLabel.setText("" + retailprice);
+
+        //Felder für hinzufügen einer Itemdelivery
+        addItemdeliveryItemIDLabel.setText("" + item.getItemID());
+        addItemdeliveryItemNameLabel.setText(item.getName());
+        addItemdeliveryQuantityField.clear();
+    }
+
+    public void deleteItem(ActionEvent actionEvent) {
+        Object item = itemTable.getSelectionModel().getSelectedItem();
+        int itemID = ((ItemModel) item).getItemID();
+        databaseService.deleteItem(itemID);
+
+        this.refreshItemData();
+    }
+
+    public void editItem(ActionEvent actionEvent) {
+        String name = editItemNameLabel.getText();
+        double retailprice = Double.parseDouble(editItemRetailpriceLabel.getText());
+        if (name != null && retailprice != 0) {
+            int itemID = Integer.parseInt(itemIDLabel.getText());
+            Item oldItem = databaseService.getItemById(itemID);
+            oldItem.setAvailable(false);
+            databaseService.updateItem(itemID, oldItem);
+
+            int quantity = oldItem.getQuantity();
+            Item newItem = new Item(name, retailprice, quantity, true);
+            databaseService.addItem(newItem);
+
+            this.refreshItemData();
+            editItemNameLabel.clear();
+            editItemRetailpriceLabel.clear();
+            itemIDLabel.setText("");
+        }
+
     }
 
     public void addItem(ActionEvent actionEvent) {
         String retailprice = itemRetailpriceLabel.getCharacters().toString();
-        itemRetailpriceLabel.clear();
         String name = itemNameLabel.getCharacters().toString();
-        itemNameLabel.clear();
         String quantity = itemQuantityLabel.getCharacters().toString();
-        itemQuantityLabel.clear();
 
         if(retailprice != null && name != null && quantity != null) {
             Item newItem = new Item(name, Double.parseDouble(retailprice), Integer.parseInt(quantity), true);
             databaseService.addItem(newItem);
+
+            this.refreshData();
+            itemRetailpriceLabel.clear();
+            itemNameLabel.clear();
+            itemQuantityLabel.clear();
         }
-        this.refreshData();
     }
 
     /*******Table*******/
+    public void onTableTabSelection(Event event) {
+        addTableNameField.clear();
+        editTableNameField.clear();
+        editTableDLabel.setText("");
+        this.refreshTableData();
+    }
+
+    public void selectTable(MouseEvent mouseEvent) {
+        Object i = tableTable.getSelectionModel().getSelectedItem();
+        int tableID = ((TableModel) i).getTableID();
+        Table table = databaseService.getTableById(tableID);
+        //Felder für bearbeiten eines Tisches
+        editTableDLabel.setText("" + table.getTableID());
+        editTableNameField.setText(table.getName());
+    }
+
     public void deleteTable(ActionEvent actionEvent) {
         Object item = tableTable.getSelectionModel().getSelectedItem();
         int tableID = ((TableModel) item).getTableID();
         databaseService.deleteTable(tableID);
-        this.refreshData();
+        this.refreshTableData();
     }
 
     public void editTable(ActionEvent actionEvent) {
+        String name = editTableNameField.getText();
+        if (name != null) {
+            int tableID = Integer.parseInt(editTableDLabel.getText());
+            Table oldTable = databaseService.getTableById(tableID);
+            oldTable.setAvailable(false);
+            databaseService.updateTable(tableID, oldTable);
 
+            Table newTable = new Table(name, true);
+            databaseService.addTable(newTable);
+
+            this.refreshTableData();
+            editTableNameField.clear();
+            editTableDLabel.setText("");
+        }
     }
-    //endregion
 
+    public void addTable(ActionEvent actionEvent) {
+        String name = addTableNameField.getCharacters().toString();
+        if (name != null) {
+            Table newTable = new Table(name, true);
+            databaseService.addTable(newTable);
 
-    public void onItemTabSelection(Event event) {
+            this.refreshTableData();
+            addTableNameField.clear();
+        }
     }
 
-    public void onOrderTabSelection(Event event) {
+    /*******Itemdelivery********/
+    public void onItemdeliveryTabSelection(Event event) {
+        this.refreshItemdeliveryData();
     }
 
-    public void onTableTabSelection(Event event) {
+    public void addItemdelivery(ActionEvent actionEvent) {
+        int itemID = Integer.parseInt(addItemdeliveryItemIDLabel.getText());
+        int quantity = Integer.parseInt(addItemdeliveryQuantityField.getText());
+
+        if(quantity != 0) {
+            Itemdelivery itemdelivery = new Itemdelivery(itemID, quantity);
+            databaseService.addItemdelivery(itemdelivery);
+            this.refreshData();
+        }
+        addItemdeliveryQuantityField.clear();
     }
+
+    public void deleteItemdelivery(ActionEvent actionEvent) {
+        Object item = itemdeliveryTable.getSelectionModel().getSelectedItem();
+        int itemdeliveryID = ((ItemdeliveryModel) item).getItemdeliveryID();
+        databaseService.deleteItemdelivery(itemdeliveryID);
+        this.refreshItemdeliveryData();
+    }
+
 
 
     /**
      * Methoden für späteres Einbinden des Refresh-Threads
      */
     public Thread refreshThread;
+
 
     private static final class Lock { }
     private final Object lock = new Lock();

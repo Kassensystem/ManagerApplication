@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dhbw.KassensystemManagerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dhbw.KassensystemManagerController">
    <children>
       <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -19,9 +19,15 @@
               <MenuItem mnemonicParsing="false" text="Löschen" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Datenbank">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#refreshData" text="Aktualisieren" />
+                  <MenuItem mnemonicParsing="false" text="Datenbank bereinigen" />
+              </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Ansicht">
               <items>
-                <MenuItem fx:id="fullscreenMenu" mnemonicParsing="false" onAction="#toggleFullscreen" text="Vollbild" />
+                <MenuItem fx:id="fullscreenMenu" mnemonicParsing="false" onAction="#toggleFullscreen" text="Vollbild ein/aus" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Hilfe">
@@ -63,11 +69,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.65" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane fx:id="itemSplitpane" dividerPositions="0.65" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView fx:id="itemTable" onMouseClicked="#selectEditItem" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="itemTable" onMouseClicked="#selectItem" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
                                           <TableColumn fx:id="itemTableIDColumn" editable="false" prefWidth="57.0" text="ID" />
                                         <TableColumn fx:id="itemTableNameColumn" editable="false" prefWidth="163.0" text="Name" />
@@ -193,6 +199,51 @@
                                                 </GridPane>
                                              </content>
                                           </TitledPane>
+                                          <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" prefHeight="392.0" prefWidth="217.0" text="Neuer Wareneingang">
+                                             <content>
+                                                <GridPane alignment="TOP_CENTER" maxHeight="-Infinity">
+                                                   <children>
+                                                      <Label text="Name" GridPane.rowIndex="1">
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <Label text="Lieferanzahl" GridPane.rowIndex="2">
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" top="10.0" />
+                                                         </padding>
+                                                      </Label>
+                                                      <TextField fx:id="addItemdeliveryQuantityField" promptText="Anzahl" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <GridPane.margin>
+                                                            <Insets right="50.0" />
+                                                         </GridPane.margin>
+                                                      </TextField>
+                                                      <Button fx:id="addItemdelivery" mnemonicParsing="false" onAction="#addItemdelivery" text="Hinzufügen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                         <GridPane.margin>
+                                                            <Insets right="10.0" />
+                                                         </GridPane.margin>
+                                                      </Button>
+                                                      <Label text="Artikel ID">
+                                                         <GridPane.margin>
+                                                            <Insets left="10.0" />
+                                                         </GridPane.margin>
+                                                      </Label>
+                                                      <Label fx:id="addItemdeliveryItemIDLabel" text="    " GridPane.columnIndex="1" />
+                                                      <Label fx:id="addItemdeliveryItemNameLabel" text="    " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                   </children>
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </content>
+                                          </TitledPane>
                                        </children>
                                     </VBox>
                                  </children>
@@ -207,68 +258,111 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableTable" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn fx:id="tableTableIDColumn" editable="false" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="tableTableNameColumn" editable="false" prefWidth="111.0" text="Bezeichnung" />
-                          </columns>
-                           <contextMenu>
-                              <ContextMenu onHidden="#continueRefreshing" onShown="#pauseRefreshing">
-                                <items>
-                                  <MenuItem fx:id="deleteTableMenu" mnemonicParsing="false" onAction="#deleteTable" text="Löschen" />
-                                    <MenuItem fx:id="editTableMenu" mnemonicParsing="false" onAction="#editTable" text="Bearbeiten" />
-                                </items>
-                              </ContextMenu>
-                           </contextMenu>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab text="Wareneingänge">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <SplitPane dividerPositions="0.6265223274695535" prefHeight="406.0" prefWidth="741.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane fx:id="tableSplitPane" dividerPositions="0.65" prefHeight="492.0" prefWidth="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView fx:id="itemdeliveryTable" layoutX="144.0" layoutY="137.0" prefHeight="404.0" prefWidth="460.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tableTable" onMouseClicked="#selectTable" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn fx:id="itemdeliveryTableIDColumn" editable="false" prefWidth="75.0" text="ID" />
-                                        <TableColumn fx:id="itemdeliveryTableItemColumn" editable="false" prefWidth="128.0" text="Artikel" />
-                                          <TableColumn fx:id="itemdeliveryTableQuantityColumn" editable="false" prefWidth="81.0" text="Anzahl" />
+                                        <TableColumn fx:id="tableTableIDColumn" editable="false" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="tableTableNameColumn" editable="false" prefWidth="111.0" text="Bezeichnung" />
                                       </columns>
+                                       <contextMenu>
+                                          <ContextMenu onHidden="#continueRefreshing" onShown="#pauseRefreshing">
+                                            <items>
+                                              <MenuItem fx:id="deleteTableMenu" mnemonicParsing="false" onAction="#deleteTable" text="Löschen" />
+                                            </items>
+                                          </ContextMenu>
+                                       </contextMenu>
                                     </TableView>
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TitledPane animated="false" collapsible="false" prefHeight="404.0" prefWidth="273.0" text="Neuer Wareneingang" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <GridPane layoutX="14.0" layoutY="161.0" prefHeight="378.0" prefWidth="271.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                  <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
-                                                </GridPane>
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </TitledPane>
+                                    <VBox prefHeight="490.0" prefWidth="273.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <TitledPane animated="false" collapsible="false" text="Tisch hinzufügen">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <GridPane layoutX="10.0" prefHeight="147.0" prefWidth="208.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#addTable" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="addTableNameField" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label text="Bezeichnung" GridPane.rowIndex="1" />
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </TitledPane>
+                                          <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="10.0" text="Tisch bearbeiten">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <GridPane prefHeight="180.0" prefWidth="271.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#editTable" text="Bearbeiten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="editTableNameField" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label text="Bezeichnung" GridPane.rowIndex="1" />
+                                                            <Label text="Tisch ID" />
+                                                            <Label fx:id="editTableDLabel" text="    " GridPane.columnIndex="1" />
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </TitledPane>
+                                          <AnchorPane prefHeight="178.0" prefWidth="273.0" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
                           </items>
                         </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="itemdeliveryTab" onSelectionChanged="#onItemdeliveryTabSelection" text="Wareneingänge">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="itemdeliveryTable" prefHeight="404.0" prefWidth="460.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="itemdeliveryTableIDColumn" editable="false" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="itemdeliveryTableItemIDColumn" editable="false" prefWidth="128.0" text="Artikel-ID" />
+                              <TableColumn fx:id="itemdeliveryTableItemNameColumn" prefWidth="118.0" text="Artikel-Name" />
+                              <TableColumn fx:id="itemdeliveryTableQuantityColumn" editable="false" prefWidth="106.0" text="Anzahl" />
+                          </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="deleteItemdeliveryMenu" mnemonicParsing="false" onAction="#deleteItemdelivery" text="Löschen" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
                      </children>
                   </AnchorPane>
               </content>

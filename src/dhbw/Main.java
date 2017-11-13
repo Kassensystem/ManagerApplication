@@ -8,11 +8,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        this.primaryStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager.fxml"));
         primaryStage.setTitle("Kassensystem-Manager");
-        primaryStage.setScene(new Scene(root, 700, 450));
+        primaryStage.setScene(new Scene(root, 700, 550));
         primaryStage.show();
     }
 
@@ -20,4 +23,21 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void toggleFullscreen() {
+        primaryStage.setFullScreen(!primaryStage.fullScreenProperty().getValue());
+    }
+
+    public static boolean isFullscreen() {
+        return primaryStage.fullScreenProperty().getValue();
+    }
+
+    public static void closeProgram() {
+        primaryStage.close();
+    }
+
 }

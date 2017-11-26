@@ -7,12 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/kassensystem_managerApplication.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/kassensystem_managerApplication/kassensystem_managerApplication.jar" afterPath="$PROJECT_DIR$/out/artifacts/kassensystem_managerApplication/kassensystem_managerApplication.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController$Lock.class" afterPath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController$Lock.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController.class" afterPath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/kassensystem_managerApplication.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/kassensystem_managerApplication.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" afterPath="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dhbw/Main.java" afterPath="$PROJECT_DIR$/src/dhbw/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dhbw/datamodel/ItemdeliveryModel.java" afterPath="$PROJECT_DIR$/src/dhbw/datamodel/ItemdeliveryModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml" afterPath="$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,45 +103,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dhbw/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="KassensystemManagerController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="269" column="0" lean-forward="true" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
               <folding>
+                <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-                <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-                <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+                <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-                <element signature="e#17733#18268#0" expanded="false" />
-                <element signature="e#18086#18212#0" expanded="false" />
+                <element signature="e#18528#19063#0" expanded="false" />
+                <element signature="e#18881#19007#0" expanded="false" />
                 <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -151,16 +152,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kassensystem_manager.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dhbw/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1429">
-              <caret line="260" column="48" lean-forward="true" selection-start-line="260" selection-start-column="48" selection-end-line="260" selection-end-column="48" />
+            <state relative-caret-position="68">
+              <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
               <folding />
             </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
           </provider>
         </entry>
       </file>
@@ -187,6 +185,11 @@
       <find>editTabl</find>
       <find>addTable</find>
       <find>tablesplit</find>
+      <find>itemTab</find>
+      <find>orderTab</find>
+      <find>Tab</find>
+      <find>tableTab</find>
+      <find>itemdeliveryTab</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -218,8 +221,8 @@
         <option value="$PROJECT_DIR$/src/dhbw/datamodel/Order.java" />
         <option value="$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml" />
         <option value="$PROJECT_DIR$/src/dhbw/datamodel/ItemdeliveryModel.java" />
-        <option value="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" />
         <option value="$PROJECT_DIR$/src/dhbw/Main.java" />
+        <option value="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" />
       </list>
     </option>
   </component>
@@ -263,15 +266,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="kassensystem_managerApplication" type="b2602c69:ProjectViewProjectNode" />
               <item name="kassensystem_managerApplication" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kassensystem_managerApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kassensystem_managerApplication" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kassensystem_managerApplication" type="b2602c69:ProjectViewProjectNode" />
@@ -291,11 +297,17 @@
               <item name="dhbw" type="462c0819:PsiDirectoryNode" />
               <item name="datamodel" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="kassensystem_managerApplication" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,10 +323,11 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.22971742" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -453,6 +466,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
@@ -470,40 +486,61 @@
       <workItem from="1510517905460" duration="2016000" />
       <workItem from="1510520054835" duration="34000" />
       <workItem from="1510584638927" duration="15173000" />
+      <workItem from="1510645006738" duration="692000" />
+      <workItem from="1510653805103" duration="795000" />
+      <workItem from="1510672603536" duration="640000" />
+      <workItem from="1510695129356" duration="165000" />
+      <workItem from="1510742541305" duration="2289000" />
+      <workItem from="1510768616132" duration="628000" />
+      <workItem from="1510849195202" duration="23000" />
+      <workItem from="1511629700073" duration="405000" />
+      <workItem from="1511630122009" duration="468000" />
+      <workItem from="1511630599661" duration="239000" />
+      <workItem from="1511630843438" duration="3424000" />
+      <workItem from="1511695340523" duration="761000" />
+      <workItem from="1511697792110" duration="111000" />
+      <workItem from="1511697911238" duration="1928000" />
+      <workItem from="1511721086480" duration="174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48388000" />
+    <option name="totallyTimeSpent" value="61130000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24597207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43609023" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1119403" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27771854" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13006397" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17963752" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3351235" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3351235" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -511,9 +548,11 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,14 +567,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java</url>
-          <line>276</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
@@ -545,108 +576,45 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dhbw/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="69" column="86" lean-forward="false" selection-start-line="69" selection-start-column="86" selection-end-line="69" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="236" column="23" lean-forward="false" selection-start-line="236" selection-start-column="23" selection-end-line="236" selection-end-column="23" />
-          <folding>
-            <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
-            <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#pauseRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="86" lean-forward="false" selection-start-line="69" selection-start-column="86" selection-end-line="69" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4012">
           <caret line="236" column="23" lean-forward="true" selection-start-line="236" selection-start-column="23" selection-end-line="236" selection-end-column="23" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -679,29 +647,40 @@
         <state relative-caret-position="1326">
           <caret line="248" column="27" lean-forward="false" selection-start-line="248" selection-start-column="27" selection-end-line="248" selection-end-column="27" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -734,29 +713,40 @@
         <state relative-caret-position="1275">
           <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -789,29 +779,40 @@
         <state relative-caret-position="1020">
           <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -844,29 +845,40 @@
         <state relative-caret-position="1173">
           <caret line="212" column="42" lean-forward="false" selection-start-line="212" selection-start-column="42" selection-end-line="212" selection-end-column="42" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -880,29 +892,40 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -924,29 +947,40 @@
         <state relative-caret-position="867">
           <caret line="51" column="54" lean-forward="false" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -987,29 +1021,40 @@
         <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -1044,21 +1089,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/OrderModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding>
-            <element signature="method#OrderModel#0;class#OrderModel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/javafx-src.zip!/javafx/scene/control/TableView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="1219" column="64" lean-forward="false" selection-start-line="1219" selection-start-column="17" selection-end-line="1219" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,14 +1107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="742" column="19" lean-forward="false" selection-start-line="742" selection-start-column="19" selection-end-line="742" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/ItemModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="46" lean-forward="false" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1105,6 +1131,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/databaseApplication/database/entity/Itemdelivery.class" />
+    <entry file="file://$PROJECT_DIR$/src/dhbw/AlertBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/databaseApplication/database/DatabaseService.class" />
+    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/databaseApplication/database/entity/Table.class" />
+    <entry file="jar://$PROJECT_DIR$/../kassensystem_database/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/kassensystem_database/database/DatabaseService.class" />
+    <entry file="das://table:/7f7fc269/d4587139-012f-4568-b280-2d363022b359/kassensystem.orders">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="1754" column="39" lean-forward="false" selection-start-line="1754" selection-start-column="39" selection-end-line="1754" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_77/javafx-src.zip!/javafx/application/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="144" column="22" lean-forward="false" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kassensystem_managerApplication.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/ItemModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="46" lean-forward="false" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/ItemdeliveryModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/OrderModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="method#OrderModel#0;class#OrderModel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/TableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1115,75 +1206,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/datamodel/ItemdeliveryModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/databaseApplication/database/entity/Itemdelivery.class">
+    <entry file="file://$PROJECT_DIR$/src/dhbw/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/7f7fc269/d4587139-012f-4568-b280-2d363022b359/kassensystem.orders">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/AlertBox.java">
+    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/kassensystem_rest/database/DatabaseService.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/databaseApplication/database/DatabaseService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="180" column="16" lean-forward="false" selection-start-line="180" selection-start-column="16" selection-end-line="180" selection-end-column="16" />
-          <folding>
-            <marker date="1510598348088" expanded="true" signature="2087:2172" ph="SELECT itemI... items" />
-            <marker date="1510598348088" expanded="true" signature="3057:3131" ph="SELECT table... tables" />
-            <marker date="1510598348088" expanded="true" signature="3808:3902" ph="SELECT order... " />
-            <marker date="1510598348088" expanded="true" signature="4891:4981" ph="SELECT itemd... itemdeliveries" />
-            <marker date="1510598348088" expanded="true" signature="5653:5769" ph="INSERT INTO missingValue.items... " />
-            <marker date="1510598348088" expanded="true" signature="6053:6132" ph="SELECT * FRO... items" />
-            <marker date="1510598348088" expanded="true" signature="6678:6780" ph="INSERT INTO missingValue.tables... " />
-            <marker date="1510598348088" expanded="true" signature="7243:7374" ph="INSERT INTO missingValue.orders... " />
-            <marker date="1510598348088" expanded="true" signature="7957:8075" ph="INSERT INTO missingValue.itemdeliveries... " />
-            <marker date="1510598348088" expanded="true" signature="8482:8596" ph="UPDATE missi... " />
-            <marker date="1510598348088" expanded="true" signature="9058:9157" ph="UPDATE missi... " />
-            <marker date="1510598348088" expanded="true" signature="9646:9777" ph="UPDATE missi... " />
-            <marker date="1510598348088" expanded="true" signature="10696:10767" ph="DELETE FROM " />
-            <marker date="1510598348088" expanded="true" signature="11081:11167" ph="DELETE FROM " />
-            <marker date="1510598348088" expanded="true" signature="12413:12498" ph="SELECT itemI... items" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../kassensystem_rest/out/artifacts/kassensystem_database_jar/kassensystem_database.jar!/dhbw/sa/databaseApplication/database/entity/Table.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="90">
+          <caret line="116" column="28" lean-forward="false" selection-start-line="116" selection-start-column="28" selection-end-line="116" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dhbw/kassensystem_manager.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1429">
-          <caret line="260" column="48" lean-forward="true" selection-start-line="260" selection-start-column="48" selection-end-line="260" selection-end-column="48" />
+        <state relative-caret-position="182">
+          <caret line="346" column="30" lean-forward="false" selection-start-line="346" selection-start-column="30" selection-end-line="346" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1191,42 +1232,45 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dhbw/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="269" column="0" lean-forward="true" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="47" column="22" lean-forward="false" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
           <folding>
+            <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#itemdeliveryTable#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#tableSplitPane#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#initialize#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshData#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#refreshOrderData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshTableData#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#refreshItemdeliveryData#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#toggleFullscreen#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSmallLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setMaximizedLayout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#setSplitPaneLayout#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#openAbout#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onOrderTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#printOrder#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="method#editOrder#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#editTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
+            <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#17733#18268#0" expanded="false" />
-            <element signature="e#18086#18212#0" expanded="false" />
+            <element signature="e#18528#19063#0" expanded="false" />
+            <element signature="e#18881#19007#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -1294,6 +1338,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

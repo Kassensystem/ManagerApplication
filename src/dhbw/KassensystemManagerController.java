@@ -4,11 +4,11 @@ import dhbw.datamodel.ItemModel;
 import dhbw.datamodel.ItemdeliveryModel;
 import dhbw.datamodel.OrderModel;
 import dhbw.datamodel.TableModel;
-import dhbw.sa.databaseApplication.database.DatabaseService;
-import dhbw.sa.databaseApplication.database.entity.Item;
-import dhbw.sa.databaseApplication.database.entity.Itemdelivery;
-import dhbw.sa.databaseApplication.database.entity.Order;
-import dhbw.sa.databaseApplication.database.entity.Table;
+import dhbw.sa.kassensystem_rest.database.DatabaseService;
+import dhbw.sa.kassensystem_rest.database.entity.Item;
+import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;
+import dhbw.sa.kassensystem_rest.database.entity.Order;
+import dhbw.sa.kassensystem_rest.database.entity.Table;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +27,11 @@ import java.util.ResourceBundle;
 
 public class KassensystemManagerController implements Initializable{
 
+
+    public Tab itemTab;
+    public Tab orderTab;
+    public Tab tableTab;
+    public Tab itemdeliveryTab;
 
     private DatabaseService databaseService = new DatabaseService();
 
@@ -89,8 +94,9 @@ public class KassensystemManagerController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("----------------------\nINITIALIZE");
         this.refreshData();
-
+        System.out.println("----------------------");
         /**
          * Todo Einbinden des Threads zum Aktualisieren der Daten
          * Methode: startRefreshThread()
@@ -264,8 +270,10 @@ public class KassensystemManagerController implements Initializable{
     }
 
     private void setSmallLayout() {
-        itemSplitpane.setDividerPositions(0.65);
-        tableSplitPane.setDividerPositions(0.65);
+        if(itemSplitpane != null && tableSplitPane != null) {
+            itemSplitpane.setDividerPositions(0.65);
+            tableSplitPane.setDividerPositions(0.65);
+        }
     }
 
     private void setMaximizedLayout() {
@@ -288,14 +296,17 @@ public class KassensystemManagerController implements Initializable{
 
     /*******Order********/
     public void onOrderTabSelection(Event event) {
-        this.refreshOrderData();
-        setSplitPaneLayout();
+        if (orderTab.isSelected()) {
+            System.out.println("LOG: Order-Tab selected");
+            this.refreshOrderData();
+            setSplitPaneLayout();
+        }
     }
 
     public void printOrder(ActionEvent actionEvent) {
         Object item = orderTable.getSelectionModel().getSelectedItem();
         int orderID = ((OrderModel) item).getOrderID();
-        databaseService.printOrder(orderID);
+        databaseService.printOrderById(orderID);
     }
 
     public void deleteOrder(ActionEvent actionEvent) {
@@ -311,15 +322,18 @@ public class KassensystemManagerController implements Initializable{
 
     /*******Item******/
     public void onItemTabSelection(Event event) {
-        this.refreshItemData();
-        setSplitPaneLayout();
-        itemIDLabel.setText("");
-        editItemNameLabel.clear();
-        editItemRetailpriceLabel.clear();
+        if (itemTab.isSelected()) {
+            System.out.println("LOG: Item-Tab selected");
+            this.refreshItemData();
+            setSplitPaneLayout();
+            itemIDLabel.setText("");
+            editItemNameLabel.clear();
+            editItemRetailpriceLabel.clear();
 
-        addItemdeliveryItemIDLabel.setText("");
-        addItemdeliveryItemNameLabel.setText("");
-        addItemdeliveryQuantityField.clear();
+            addItemdeliveryItemIDLabel.setText("");
+            addItemdeliveryItemNameLabel.setText("");
+            addItemdeliveryQuantityField.clear();
+        }
     }
 
     public void selectItem(MouseEvent mouseEvent) {
@@ -385,10 +399,13 @@ public class KassensystemManagerController implements Initializable{
 
     /*******Table*******/
     public void onTableTabSelection(Event event) {
-        addTableNameField.clear();
-        editTableNameField.clear();
-        editTableDLabel.setText("");
-        this.refreshTableData();
+        if(tableTab.isSelected()) {
+            System.out.println("LOG: Table-Tab selected");
+            addTableNameField.clear();
+            editTableNameField.clear();
+            editTableDLabel.setText("");
+            this.refreshTableData();
+        }
     }
 
     public void selectTable(MouseEvent mouseEvent) {
@@ -437,7 +454,10 @@ public class KassensystemManagerController implements Initializable{
 
     /*******Itemdelivery********/
     public void onItemdeliveryTabSelection(Event event) {
-        this.refreshItemdeliveryData();
+        if (itemdeliveryTab.isSelected()) {
+            System.out.println("LOG: Itemdelivery-Tab selected");
+            this.refreshItemdeliveryData();
+        }
     }
 
     public void addItemdelivery(ActionEvent actionEvent) {

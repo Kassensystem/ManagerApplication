@@ -1,14 +1,13 @@
 package dhbw;
 
-import dhbw.datamodel.ItemModel;
-import dhbw.datamodel.ItemdeliveryModel;
-import dhbw.datamodel.OrderModel;
-import dhbw.datamodel.TableModel;
+import dhbw.datamodel.*;
 import dhbw.sa.kassensystem_rest.database.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;
 import dhbw.sa.kassensystem_rest.database.entity.Order;
 import dhbw.sa.kassensystem_rest.database.entity.Table;
+import dhbw.sa.kassensystem_rest.exceptions.DataException;
+import dhbw.sa.kassensystem_rest.exceptions.MySQLServerConnectionException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +26,7 @@ import java.util.ResourceBundle;
 
 public class KassensystemManagerController implements Initializable{
 
+    private AlertBox alertBox = new AlertBox();
 
     public Tab itemTab;
     public Tab orderTab;
@@ -101,6 +101,8 @@ public class KassensystemManagerController implements Initializable{
          * Todo Einbinden des Threads zum Aktualisieren der Daten
          * Methode: startRefreshThread()
          */
+
+        Thread.setDefaultUncaughtExceptionHandler(new CustomUncaughtExceptionHandler());
 
     }
 
@@ -367,11 +369,12 @@ public class KassensystemManagerController implements Initializable{
             int itemID = Integer.parseInt(itemIDLabel.getText());
             Item oldItem = databaseService.getItemById(itemID);
             oldItem.setAvailable(false);
-            databaseService.updateItem(itemID, oldItem);
 
             int quantity = oldItem.getQuantity();
             Item newItem = new Item(name, retailprice, quantity, true);
             databaseService.addItem(newItem);
+
+            databaseService.updateItem(itemID, oldItem);
 
             this.refreshItemData();
             editItemNameLabel.clear();
@@ -426,11 +429,22 @@ public class KassensystemManagerController implements Initializable{
 
     public void editTable(ActionEvent actionEvent) {
         String name = editTableNameField.getText();
-        if (name != null) {
+        if (name != null && name != "") {
             int tableID = Integer.parseInt(editTableDLabel.getText());
             Table oldTable = databaseService.getTableById(tableID);
             oldTable.setAvailable(false);
-            databaseService.updateTable(tableID, oldTable);
+            try {
+                databaseService.updateTable(tableID, oldTable);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                alertBox.display("Error",e.getMessage());
+            } catch (DataException e) {
+                e.printStackTrace();
+                alertBox.display("Error",e.getMessage());
+            } catch (MySQLServerConnectionException e) {
+                e.printStackTrace();
+                alertBox.display("Error",e.getMessage());
+            }
 
             Table newTable = new Table(name, true);
             databaseService.addTable(newTable);
@@ -443,9 +457,17 @@ public class KassensystemManagerController implements Initializable{
 
     public void addTable(ActionEvent actionEvent) {
         String name = addTableNameField.getCharacters().toString();
-        if (name != null) {
+        if (name != null && name != "") {
             Table newTable = new Table(name, true);
-            databaseService.addTable(newTable);
+            try {
+                databaseService.addTable(newTable);
+            } catch (MySQLServerConnectionException e) {
+                e.printStackTrace();
+                alertBox.display("Error",e.getMessage());
+            } catch (DataException e) {
+                e.printStackTrace();
+                alertBox.display("Error",e.getMessage());
+            }
 
             this.refreshTableData();
             addTableNameField.clear();

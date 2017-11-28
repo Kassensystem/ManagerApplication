@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="joda-time-2.9">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../- libraries/joda-time-2.9.9" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../- libraries/joda-time-2.9.9" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../- libraries/joda-time-2.9.9" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../- libraries/joda-time-2.9.9" recursive="false" type="SOURCES" />
+  </library>
+</component>

@@ -6,8 +6,6 @@ import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;
 import dhbw.sa.kassensystem_rest.database.entity.Order;
 import dhbw.sa.kassensystem_rest.database.entity.Table;
-import dhbw.sa.kassensystem_rest.exceptions.DataException;
-import dhbw.sa.kassensystem_rest.exceptions.MySQLServerConnectionException;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class KassensystemManagerController implements Initializable{
 
-    private AlertBox alertBox = new AlertBox();
+    private String version = "1.0";
 
     public Tab itemTab;
     public Tab orderTab;
@@ -85,8 +83,6 @@ public class KassensystemManagerController implements Initializable{
 
     public TextField addTableNameField;
 
-
-
     private ArrayList<Order> allOrders;
     private ArrayList<Item> allItems;
     private ArrayList<Table> allTables;
@@ -94,6 +90,9 @@ public class KassensystemManagerController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Thread.setDefaultUncaughtExceptionHandler(new CustomUncaughtExceptionHandler());
+
         System.out.println("----------------------\nINITIALIZE");
         this.refreshData();
         System.out.println("----------------------");
@@ -101,9 +100,6 @@ public class KassensystemManagerController implements Initializable{
          * Todo Einbinden des Threads zum Aktualisieren der Daten
          * Methode: startRefreshThread()
          */
-
-        Thread.setDefaultUncaughtExceptionHandler(new CustomUncaughtExceptionHandler());
-
     }
 
     public void refreshData() {
@@ -292,7 +288,11 @@ public class KassensystemManagerController implements Initializable{
     }
 
     public void openAbout(ActionEvent actionEvent) {
-
+        AlertBox.display("About",
+                "Kassensystem-Manager Verwaltungstool\n" +
+                        "Version " + version +"\n" +
+                        "by Daniel Schifano und Marvin Mai\n" +
+                        "DHBW-Stuttgart Jahrgang 2015\n");
     }
 
 
@@ -340,18 +340,20 @@ public class KassensystemManagerController implements Initializable{
 
     public void selectItem(MouseEvent mouseEvent) {
         Object i = itemTable.getSelectionModel().getSelectedItem();
-        int itemID = ((ItemModel) i).getItemID();
-        Item item = databaseService.getItemById(itemID);
-        //Felder für Bearbeiten eines Items
-        double retailprice = item.getRetailprice();
-        itemIDLabel.setText("" + item.getItemID());
-        editItemNameLabel.setText(item.getName());
-        editItemRetailpriceLabel.setText("" + retailprice);
+        if (i != null) {
+            int itemID = ((ItemModel) i).getItemID();
+            Item item = databaseService.getItemById(itemID);
+            //Felder für Bearbeiten eines Items
+            double retailprice = item.getRetailprice();
+            itemIDLabel.setText("" + item.getItemID());
+            editItemNameLabel.setText(item.getName());
+            editItemRetailpriceLabel.setText("" + retailprice);
 
-        //Felder für hinzufügen einer Itemdelivery
-        addItemdeliveryItemIDLabel.setText("" + item.getItemID());
-        addItemdeliveryItemNameLabel.setText(item.getName());
-        addItemdeliveryQuantityField.clear();
+            //Felder für hinzufügen einer Itemdelivery
+            addItemdeliveryItemIDLabel.setText("" + item.getItemID());
+            addItemdeliveryItemNameLabel.setText(item.getName());
+            addItemdeliveryQuantityField.clear();
+        }
     }
 
     public void deleteItem(ActionEvent actionEvent) {
@@ -364,14 +366,17 @@ public class KassensystemManagerController implements Initializable{
 
     public void editItem(ActionEvent actionEvent) {
         String name = editItemNameLabel.getText();
-        double retailprice = Double.parseDouble(editItemRetailpriceLabel.getText());
-        if (name != null && retailprice != 0) {
-            int itemID = Integer.parseInt(itemIDLabel.getText());
+        String retailprice = editItemRetailpriceLabel.getText();
+        String itemIDtext = itemIDLabel.getText();
+
+        if (!retailprice.isEmpty() && !itemIDtext.isEmpty()) {
+            int itemID = Integer.parseInt(itemIDtext);
             Item oldItem = databaseService.getItemById(itemID);
             oldItem.setAvailable(false);
 
+            double price = Double.parseDouble(retailprice);
             int quantity = oldItem.getQuantity();
-            Item newItem = new Item(name, retailprice, quantity, true);
+            Item newItem = new Item(name, Double.parseDouble(retailprice), quantity, true);
             databaseService.addItem(newItem);
 
             databaseService.updateItem(itemID, oldItem);
@@ -381,15 +386,19 @@ public class KassensystemManagerController implements Initializable{
             editItemRetailpriceLabel.clear();
             itemIDLabel.setText("");
         }
+        else if(itemIDtext.isEmpty())
+            AlertBox.display("Error", "Bitte zum Bearbeiten einen Tisch auswählen.");
+        else
+            AlertBox.display("Error", "Bitte einen Preis eingeben.");
 
     }
 
     public void addItem(ActionEvent actionEvent) {
-        String retailprice = itemRetailpriceLabel.getCharacters().toString();
         String name = itemNameLabel.getCharacters().toString();
+        String retailprice = itemRetailpriceLabel.getCharacters().toString();
         String quantity = itemQuantityLabel.getCharacters().toString();
 
-        if(retailprice != null && name != null && quantity != null) {
+        if(!retailprice.isEmpty() && !quantity.isEmpty()) {
             Item newItem = new Item(name, Double.parseDouble(retailprice), Integer.parseInt(quantity), true);
             databaseService.addItem(newItem);
 
@@ -398,6 +407,10 @@ public class KassensystemManagerController implements Initializable{
             itemNameLabel.clear();
             itemQuantityLabel.clear();
         }
+        else if(retailprice.isEmpty())
+            AlertBox.display("Error", "Bitte einen Preis eingeben.");
+        else
+            AlertBox.display("Error", "Bitte eine Anzahl für den neuen Wareneingang eingeben.");
     }
 
     /*******Table*******/
@@ -413,11 +426,13 @@ public class KassensystemManagerController implements Initializable{
 
     public void selectTable(MouseEvent mouseEvent) {
         Object i = tableTable.getSelectionModel().getSelectedItem();
-        int tableID = ((TableModel) i).getTableID();
-        Table table = databaseService.getTableById(tableID);
-        //Felder für bearbeiten eines Tisches
-        editTableDLabel.setText("" + table.getTableID());
-        editTableNameField.setText(table.getName());
+        if (i != null) {
+            int tableID = ((TableModel) i).getTableID();
+            Table table = databaseService.getTableById(tableID);
+            //Felder für bearbeiten eines Tisches
+            editTableDLabel.setText("" + table.getTableID());
+            editTableNameField.setText(table.getName());
+        }
     }
 
     public void deleteTable(ActionEvent actionEvent) {
@@ -429,49 +444,35 @@ public class KassensystemManagerController implements Initializable{
 
     public void editTable(ActionEvent actionEvent) {
         String name = editTableNameField.getText();
-        if (name != null && name != "") {
-            int tableID = Integer.parseInt(editTableDLabel.getText());
+        String tableIDText = editTableDLabel.getText();
+
+
+        if (!tableIDText.isEmpty()) {
+            int tableID = Integer.parseInt(tableIDText);
             Table oldTable = databaseService.getTableById(tableID);
             oldTable.setAvailable(false);
-            try {
-                databaseService.updateTable(tableID, oldTable);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-                alertBox.display("Error",e.getMessage());
-            } catch (DataException e) {
-                e.printStackTrace();
-                alertBox.display("Error",e.getMessage());
-            } catch (MySQLServerConnectionException e) {
-                e.printStackTrace();
-                alertBox.display("Error",e.getMessage());
-            }
 
             Table newTable = new Table(name, true);
             databaseService.addTable(newTable);
+
+            databaseService.updateTable(tableID, oldTable);
 
             this.refreshTableData();
             editTableNameField.clear();
             editTableDLabel.setText("");
         }
+        else
+            AlertBox.display("Error", "Bitte einen Tisch zum Bearbeiten auswählen.");
     }
 
     public void addTable(ActionEvent actionEvent) {
         String name = addTableNameField.getCharacters().toString();
-        if (name != null && name != "") {
-            Table newTable = new Table(name, true);
-            try {
-                databaseService.addTable(newTable);
-            } catch (MySQLServerConnectionException e) {
-                e.printStackTrace();
-                alertBox.display("Error",e.getMessage());
-            } catch (DataException e) {
-                e.printStackTrace();
-                alertBox.display("Error",e.getMessage());
-            }
 
-            this.refreshTableData();
-            addTableNameField.clear();
-        }
+        Table newTable = new Table(name, true);
+        databaseService.addTable(newTable);
+
+        this.refreshTableData();
+        addTableNameField.clear();
     }
 
     /*******Itemdelivery********/
@@ -483,15 +484,20 @@ public class KassensystemManagerController implements Initializable{
     }
 
     public void addItemdelivery(ActionEvent actionEvent) {
-        int itemID = Integer.parseInt(addItemdeliveryItemIDLabel.getText());
-        int quantity = Integer.parseInt(addItemdeliveryQuantityField.getText());
+        String itemIdText = addItemdeliveryItemIDLabel.getText();
+        String quantityText = addItemdeliveryQuantityField.getText();
 
-        if(quantity != 0) {
+
+        if(!quantityText.isEmpty()) {
+            int itemID = Integer.parseInt(itemIdText);
+            int quantity = Integer.parseInt(quantityText);
             Itemdelivery itemdelivery = new Itemdelivery(itemID, quantity);
             databaseService.addItemdelivery(itemdelivery);
             this.refreshData();
+            addItemdeliveryQuantityField.clear();
         }
-        addItemdeliveryQuantityField.clear();
+        else
+            AlertBox.display("Error", "Bitte eine Anzahl für den neuen Wareneingang eingeben.");
     }
 
     public void deleteItemdelivery(ActionEvent actionEvent) {

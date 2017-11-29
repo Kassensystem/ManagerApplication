@@ -55,7 +55,6 @@
                               <ContextMenu onHidden="#continueRefreshing" onShown="#pauseRefreshing">
                                 <items>
                                   <MenuItem fx:id="deleteOrderMenu" mnemonicParsing="false" onAction="#deleteOrder" text="Löschen" />
-                                    <MenuItem fx:id="editOrderMenu" mnemonicParsing="false" onAction="#editOrder" text="Bearbeiten" />
                                     <MenuItem fx:id="printOrderMenu" mnemonicParsing="false" onAction="#printOrder" text="Ausdrucken" />
                                 </items>
                               </ContextMenu>

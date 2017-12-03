@@ -7,19 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/AlertBox.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/CustomUncaughtExceptionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController$Lock.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/KassensystemManagerController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/datamodel/ItemModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/datamodel/ItemdeliveryModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/datamodel/OrderModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/datamodel/TableModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/kassensystem_managerApplication/dhbw/kassensystem_manager.fxml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/kassensystem_managerApplication/bundles/kassensystem_managerApplication/app/errorlog.txt" afterPath="$PROJECT_DIR$/out/artifacts/kassensystem_managerApplication/bundles/kassensystem_managerApplication/app/errorlog.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" afterPath="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -121,8 +110,8 @@
       <file leaf-file-name="KassensystemManagerController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+            <state relative-caret-position="765">
+              <caret line="389" column="73" lean-forward="false" selection-start-line="389" selection-start-column="73" selection-end-line="389" selection-end-column="73" />
               <folding>
                 <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
@@ -148,7 +137,6 @@
                 <element signature="method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-                <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
@@ -162,8 +150,8 @@
                 <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-                <element signature="e#19788#20323#0" expanded="false" />
-                <element signature="e#20141#20267#0" expanded="false" />
+                <element signature="e#19790#20325#0" expanded="false" />
+                <element signature="e#20143#20269#0" expanded="false" />
                 <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
                 <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -236,8 +224,8 @@
         <option value="$PROJECT_DIR$/src/dhbw/AlertBox.java" />
         <option value="$PROJECT_DIR$/src/dhbw/datamodel/CustomUncaughtExceptionHandler.java" />
         <option value="$PROJECT_DIR$/src/dhbw/CustomUncaughtExceptionHandler.java" />
-        <option value="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" />
         <option value="$PROJECT_DIR$/src/dhbw/Main.java" />
+        <option value="$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java" />
       </list>
     </option>
   </component>
@@ -280,10 +268,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -328,6 +314,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -535,11 +523,12 @@
       <workItem from="1512255580553" duration="932000" />
       <workItem from="1512256599968" duration="125000" />
       <workItem from="1512325442241" duration="42000" />
+      <workItem from="1512327631279" duration="89000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83408000" />
+    <option name="totallyTimeSpent" value="83497000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -556,6 +545,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -567,7 +557,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18336888" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18550107" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17963752" sideWeight="0.49459043" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -583,7 +573,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17963752" sideWeight="0.5054096" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -660,7 +649,6 @@
             <element signature="method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
@@ -674,8 +662,8 @@
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#19788#20323#0" expanded="false" />
-            <element signature="e#20141#20267#0" expanded="false" />
+            <element signature="e#19790#20325#0" expanded="false" />
+            <element signature="e#20143#20269#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -713,7 +701,6 @@
             <element signature="method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
@@ -727,8 +714,8 @@
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#19788#20323#0" expanded="false" />
-            <element signature="e#20141#20267#0" expanded="false" />
+            <element signature="e#19790#20325#0" expanded="false" />
+            <element signature="e#20143#20269#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -774,7 +761,6 @@
             <element signature="method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
@@ -788,8 +774,8 @@
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#19788#20323#0" expanded="false" />
-            <element signature="e#20141#20267#0" expanded="false" />
+            <element signature="e#19790#20325#0" expanded="false" />
+            <element signature="e#20143#20269#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -854,7 +840,6 @@
             <element signature="method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
@@ -868,8 +853,8 @@
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#19788#20323#0" expanded="false" />
-            <element signature="e#20141#20267#0" expanded="false" />
+            <element signature="e#19790#20325#0" expanded="false" />
+            <element signature="e#20143#20269#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
@@ -1111,8 +1096,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dhbw/KassensystemManagerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="91" column="67" lean-forward="false" selection-start-line="91" selection-start-column="67" selection-end-line="91" selection-end-column="67" />
+        <state relative-caret-position="765">
+          <caret line="389" column="73" lean-forward="false" selection-start-line="389" selection-start-column="73" selection-end-line="389" selection-end-column="73" />
           <folding>
             <element signature="docComment;field#orderTable#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;field#itemSplitpane#0;class#KassensystemManagerController#0" expanded="false" />
@@ -1138,7 +1123,6 @@
             <element signature="method#onItemTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#selectItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#deleteItem#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="method#editItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#addItem#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#onTableTabSelection#0;class#KassensystemManagerController#0" expanded="false" />
@@ -1152,8 +1136,8 @@
             <element signature="method#deleteItemdelivery#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="docComment;field#refreshThread#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#startRefreshThread#0;class#KassensystemManagerController#0" expanded="false" />
-            <element signature="e#19788#20323#0" expanded="false" />
-            <element signature="e#20141#20267#0" expanded="false" />
+            <element signature="e#19790#20325#0" expanded="false" />
+            <element signature="e#20143#20269#0" expanded="false" />
             <element signature="method#continueRefreshing#0;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#continueRefreshing#1;class#KassensystemManagerController#0" expanded="false" />
             <element signature="method#pauseRefreshing#0;class#KassensystemManagerController#0" expanded="false" />

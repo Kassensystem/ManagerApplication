@@ -387,7 +387,7 @@ public class KassensystemManagerController implements Initializable{
             itemIDLabel.setText("");
         }
         else if(itemIDtext.isEmpty())
-            AlertBox.display("Error", "Bitte zum Bearbeiten einen Tisch auswählen.");
+            AlertBox.display("Error", "Bitte zum Bearbeiten einen Artikel auswählen.");
         else
             AlertBox.display("Error", "Bitte einen Preis eingeben.");
 

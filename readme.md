@@ -1,2 +1,5 @@
 Ausführbare Datei kassensystem_managerApplication.exe im Pfad:
+
 \kassensystem_managerApplication\out\artifacts\kassensystem_managerApplication\bundles\kassensystem_managerApplication\
+
+https://github.com/Kassensystem/ManagerApplication/tree/master/out/artifacts/kassensystem_managerApplication/bundles/kassensystem_managerApplication

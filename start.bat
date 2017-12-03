@@ -1,1 +1,0 @@
-java -jar \out\artifacts\kassensystem_managerApplication_jar/kassensystem_managerApplication.jar

@@ -509,7 +509,7 @@ public class KassensystemManagerController implements Initializable{
 
 
 
-    /**
+    /*
      * Methoden für späteres Einbinden des Refresh-Threads
      */
     public Thread refreshThread;

@@ -281,7 +281,8 @@ public class KassensystemManagerController implements Initializable{
 
     private void setSplitPaneLayout() {
         boolean maximized = Main.getPrimaryStage().isMaximized();
-        if(maximized)
+        boolean fullscreen = Main.isFullscreen();
+        if(maximized || fullscreen)
             setMaximizedLayout();
         else
             setSmallLayout();
@@ -301,6 +302,7 @@ public class KassensystemManagerController implements Initializable{
         if (orderTab.isSelected()) {
             System.out.println("LOG: Order-Tab selected");
             this.refreshOrderData();
+
             setSplitPaneLayout();
         }
     }
@@ -327,7 +329,9 @@ public class KassensystemManagerController implements Initializable{
         if (itemTab.isSelected()) {
             System.out.println("LOG: Item-Tab selected");
             this.refreshItemData();
+
             setSplitPaneLayout();
+
             itemIDLabel.setText("");
             editItemNameLabel.clear();
             editItemRetailpriceLabel.clear();
@@ -507,11 +511,17 @@ public class KassensystemManagerController implements Initializable{
         this.refreshItemdeliveryData();
     }
 
+    public void cleanDatabase(ActionEvent actionEvent) {
+        // TODO
+        (new AlertBox()).display("Datenbank bereinigen", "Diese Funktion ist noch nicht verfügbar.\n" +
+                "Sie wird in einer späteren Version hinzugefügt.");
+    }
 
 
     /*
      * Methoden für späteres Einbinden des Refresh-Threads
      */
+
     public Thread refreshThread;
 
 

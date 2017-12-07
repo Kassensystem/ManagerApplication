@@ -14,20 +14,15 @@
               <MenuItem fx:id="closeMenu" mnemonicParsing="false" onAction="#closeProgram" text="Programm beenden" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Bearbeiten">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Löschen" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Datenbank">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#refreshData" text="Aktualisieren" />
-                  <MenuItem mnemonicParsing="false" text="Datenbank bereinigen" />
-              </items>
-            </Menu>
             <Menu mnemonicParsing="false" text="Ansicht">
               <items>
                 <MenuItem fx:id="fullscreenMenu" mnemonicParsing="false" onAction="#toggleFullscreen" text="Vollbild ein/aus" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Datenbank">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#refreshData" text="Aktualisieren" />
+                  <MenuItem mnemonicParsing="false" onAction="#cleanDatabase" text="Datenbank bereinigen" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Hilfe">

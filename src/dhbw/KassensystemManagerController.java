@@ -1,7 +1,7 @@
 package dhbw;
 
 import dhbw.datamodel.*;
-import dhbw.sa.kassensystem_rest.database.DatabaseService;
+import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;
 import dhbw.sa.kassensystem_rest.database.entity.Order;

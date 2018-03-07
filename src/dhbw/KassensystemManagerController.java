@@ -333,24 +333,15 @@ public class KassensystemManagerController implements Initializable{
 
 	public void showOrderDetails(ActionEvent actionEvent)
 	{
-		Object item = orderTable.getSelectionModel().getSelectedItem();
-
+		Object order = orderTable.getSelectionModel().getSelectedItem();
 		try
 		{
-			/*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("kassensystem_manager_orderDetails.fxml"));
-			Parent root1 = null;
-			root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.initStyle(StageStyle.UNDECORATED);
-			stage.setTitle("ABC");
-			stage.setScene(new Scene(root1));
-			stage.show();*/
 			Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager_orderDetails.fxml"));
 			Stage stage2 = new Stage();
 			stage2.setTitle("Bestelldetails");
 			stage2.setScene(new Scene(root, 450, 350));
 			stage2.show();
+			OrderDetailsController.initialize(((OrderModel) order));
 		} catch (IOException e)
 		{
 			e.printStackTrace();

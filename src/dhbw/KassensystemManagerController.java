@@ -1,7 +1,7 @@
 package dhbw;
 
 import dhbw.datamodel.*;
-import dhbw.sa.kassensystem_rest.database.DatabaseService;
+import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;
 import dhbw.sa.kassensystem_rest.database.entity.Order;
@@ -11,79 +11,90 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static dhbw.Main.primaryStage;
+
 public class KassensystemManagerController implements Initializable{
 
-    private String version = "1.0";
+	private String version = "1.1";
 
-    public Tab itemTab;
-    public Tab orderTab;
-    public Tab tableTab;
-    public Tab itemdeliveryTab;
+	public Tab itemTab;
+	public Tab orderTab;
+	public Tab tableTab;
+	public Tab itemdeliveryTab;
 
-    private DatabaseService databaseService = new DatabaseService();
+	private DatabaseService databaseService = new DatabaseService();
 
 
-    /****Order-Tab****/
+	/****Order-Tab****/
     public TableView orderTable;
-    public TableColumn orderTableIDColumn;
-    public TableColumn orderTableItemsColumn;
-    public TableColumn orderTablePriceColumn;
-    public TableColumn orderTableTableColumn;
-    public TableColumn orderTableDateColumn;
+	public TableColumn orderTableIDColumn;
+	public TableColumn orderTablePriceColumn;
+	public TableColumn orderTableTableColumn;
+	public TableColumn orderTableDateColumn;
 
 
-    /****Item-Tab****/
+	/****Item-Tab****/
     public SplitPane itemSplitpane;
 
-    public TableView itemTable;
-    public TableColumn itemTableIDColumn;
-    public TableColumn itemTableNameColumn;
-    public TableColumn itemTableRetailpriceColumn;
-    public TableColumn itemTableQuantityColumn;
+	public TableView itemTable;
+	public TableColumn itemTableIDColumn;
+	public TableColumn itemTableNameColumn;
+	public TableColumn itemTableRetailpriceColumn;
+	public TableColumn itemTableQuantityColumn;
 
-    public TextField itemNameLabel;
-    public TextField itemRetailpriceLabel;
-    public TextField itemQuantityLabel;
+	public TextField itemNameLabel;
+	public TextField itemRetailpriceLabel;
+	public TextField itemQuantityLabel;
 
-    public Label itemIDLabel;
-    public TextField editItemNameLabel;
-    public TextField editItemRetailpriceLabel;
+	public Label itemIDLabel;
+	public TextField editItemNameLabel;
+	public TextField editItemRetailpriceLabel;
 
-    /****Itemdelivery-Tab****/
+	/****Itemdelivery-Tab****/
     public TableView itemdeliveryTable;
-    public TableColumn itemdeliveryTableIDColumn;
-    public TableColumn itemdeliveryTableItemIDColumn;
-    public TableColumn itemdeliveryTableItemNameColumn;
-    public TableColumn itemdeliveryTableQuantityColumn;
+	public TableColumn itemdeliveryTableIDColumn;
+	public TableColumn itemdeliveryTableItemIDColumn;
+	public TableColumn itemdeliveryTableItemNameColumn;
+	public TableColumn itemdeliveryTableQuantityColumn;
 
-    public Label addItemdeliveryItemIDLabel;
-    public Label addItemdeliveryItemNameLabel;
-    public TextField addItemdeliveryQuantityField;
+	public Label addItemdeliveryItemIDLabel;
+	public Label addItemdeliveryItemNameLabel;
+	public TextField addItemdeliveryQuantityField;
 
-    /****Table-Tab****/
+	/****Table-Tab****/
     public SplitPane tableSplitPane;
 
-    public TableView tableTable;
-    public TableColumn tableTableIDColumn;
-    public TableColumn tableTableNameColumn;
+	public TableView tableTable;
+	public TableColumn tableTableIDColumn;
+	public TableColumn tableTableNameColumn;
+	public TableColumn tableTableSeatsColumn;
 
-    public TextField editTableNameField;
-    public Label editTableDLabel;
+	public TextField editTableNameField;
+	public Label editTableDLabel;
+	public TextField editTableSeatsField;
 
-    public TextField addTableNameField;
+	public TextField addTableNameField;
+	public TextField addTableSeatsField;
 
-    private ArrayList<Order> allOrders;
+	private ArrayList<Order> allOrders;
     private ArrayList<Item> allItems;
     private ArrayList<Table> allTables;
     private ArrayList<Itemdelivery> allItemdeliveries;
@@ -123,20 +134,15 @@ public class KassensystemManagerController implements Initializable{
         //Daten abrufen
         ObservableList<OrderModel> orderData = FXCollections.observableArrayList();
         allOrders = databaseService.getAllOrders();
-        allItems = databaseService.getAllItems();
         allTables = databaseService.getAllTables();
         for (Order o : allOrders) {
-            String items = "";
-            for (Item i : o.getItems(allItems)) {
-                items += i.getName() + "\n";
-            }
+
             String tableName = o.getTable(allTables).getName();
 
-            orderData.add(new OrderModel(o.getOrderID(), items, o.getPrice(), o.getDate().toString("dd.MM.yyyy kk:mm:ss"), tableName));
+            orderData.add(new OrderModel(o.getOrderID(), o.getPrice(), o.getDate().toString("dd.MM.yyyy kk:mm:ss"), tableName));
         }
         //Tabelle befüllen
         orderTableIDColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Integer>("orderID"));
-        orderTableItemsColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("items"));
         orderTablePriceColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Double>("price"));
         orderTableTableColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("table"));
         orderTableDateColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("date"));
@@ -194,11 +200,12 @@ public class KassensystemManagerController implements Initializable{
         allTables = databaseService.getAllTables();
         for(Table t: allTables) {
             if(t.isAvailable())
-                tableData.add(new TableModel(t.getTableID(), t.getName()));
+                tableData.add(new TableModel(t.getTableID(), t.getName(), t.getSeats()));
         }
         //Tabelle befüllen
         tableTableIDColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("tableID"));
         tableTableNameColumn.setCellValueFactory(new PropertyValueFactory<TableModel, String>("name"));
+		tableTableSeatsColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("seats"));
 
         tableTable.setItems(tableData);
         //Gesicherte Sortierung wieder anwenden
@@ -324,6 +331,32 @@ public class KassensystemManagerController implements Initializable{
 
     }
 
+	public void showOrderDetails(ActionEvent actionEvent)
+	{
+		Object item = orderTable.getSelectionModel().getSelectedItem();
+
+		try
+		{
+			/*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("kassensystem_manager_orderDetails.fxml"));
+			Parent root1 = null;
+			root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.setTitle("ABC");
+			stage.setScene(new Scene(root1));
+			stage.show();*/
+			Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager_orderDetails.fxml"));
+			Stage stage2 = new Stage();
+			stage2.setTitle("Bestelldetails");
+			stage2.setScene(new Scene(root, 450, 350));
+			stage2.show();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
     /*******Item******/
     public void onItemTabSelection(Event event) {
         if (itemTab.isSelected()) {
@@ -422,8 +455,10 @@ public class KassensystemManagerController implements Initializable{
         if(tableTab.isSelected()) {
             System.out.println("LOG: Table-Tab selected");
             addTableNameField.clear();
+			addTableSeatsField.clear();
             editTableNameField.clear();
             editTableDLabel.setText("");
+			editTableSeatsField.clear();
             this.refreshTableData();
         }
     }
@@ -436,6 +471,7 @@ public class KassensystemManagerController implements Initializable{
             //Felder für bearbeiten eines Tisches
             editTableDLabel.setText("" + table.getTableID());
             editTableNameField.setText(table.getName());
+			editTableSeatsField.setText(Integer.toString(table.getSeats()));
         }
     }
 
@@ -449,6 +485,7 @@ public class KassensystemManagerController implements Initializable{
     public void editTable(ActionEvent actionEvent) {
         String name = editTableNameField.getText();
         String tableIDText = editTableDLabel.getText();
+        int seats = Integer.parseInt(editTableSeatsField.getText());
 
 
         if (!tableIDText.isEmpty()) {
@@ -456,7 +493,7 @@ public class KassensystemManagerController implements Initializable{
             Table oldTable = databaseService.getTableById(tableID);
             oldTable.setAvailable(false);
 
-            Table newTable = new Table(name, true);
+            Table newTable = new Table(name, seats, true);
             databaseService.addTable(newTable);
 
             databaseService.updateTable(tableID, oldTable);
@@ -464,6 +501,7 @@ public class KassensystemManagerController implements Initializable{
             this.refreshTableData();
             editTableNameField.clear();
             editTableDLabel.setText("");
+			editTableSeatsField.clear();
         }
         else
             AlertBox.display("Error", "Bitte einen Tisch zum Bearbeiten auswählen.");
@@ -471,12 +509,14 @@ public class KassensystemManagerController implements Initializable{
 
     public void addTable(ActionEvent actionEvent) {
         String name = addTableNameField.getCharacters().toString();
+        int seats = Integer.parseInt(addTableSeatsField.getCharacters().toString());
 
-        Table newTable = new Table(name, true);
+        Table newTable = new Table(name, seats, true);
         databaseService.addTable(newTable);
 
         this.refreshTableData();
         addTableNameField.clear();
+		addTableSeatsField.clear();
     }
 
     /*******Itemdelivery********/
@@ -524,8 +564,7 @@ public class KassensystemManagerController implements Initializable{
 
     public Thread refreshThread;
 
-
-    private static final class Lock { }
+	private static final class Lock { }
     private final Object lock = new Lock();
     private void startRefreshThread() {
         //Tabelleninhalt alle Sekunde aktualisieren

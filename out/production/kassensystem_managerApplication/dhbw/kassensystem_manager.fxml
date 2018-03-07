@@ -41,7 +41,6 @@
                         <TableView fx:id="orderTable" layoutX="233.0" layoutY="84.0" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="orderTableIDColumn" editable="false" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="orderTableItemsColumn" editable="false" prefWidth="144.0" text="Artikel" />
                               <TableColumn fx:id="orderTablePriceColumn" editable="false" prefWidth="57.0" text="Preis" />
                               <TableColumn fx:id="orderTableTableColumn" editable="false" prefWidth="75.0" text="Tisch" />
                               <TableColumn fx:id="orderTableDateColumn" editable="false" prefWidth="141.0" text="Datum - Uhrzeit" />
@@ -51,6 +50,7 @@
                                 <items>
                                   <MenuItem fx:id="deleteOrderMenu" mnemonicParsing="false" onAction="#deleteOrder" text="Löschen" />
                                     <MenuItem fx:id="printOrderMenu" mnemonicParsing="false" onAction="#printOrder" text="Ausdrucken" />
+                                    <MenuItem fx:id="showOrderDetails" mnemonicParsing="false" onAction="#showOrderDetails" text="Details" />
                                 </items>
                               </ContextMenu>
                            </contextMenu>
@@ -260,6 +260,7 @@
                                       <columns>
                                         <TableColumn fx:id="tableTableIDColumn" editable="false" prefWidth="75.0" text="ID" />
                                         <TableColumn fx:id="tableTableNameColumn" editable="false" prefWidth="111.0" text="Bezeichnung" />
+                                          <TableColumn fx:id="tableTableSeatsColumn" prefWidth="75.0" text="Sitzanzahl" />
                                       </columns>
                                        <contextMenu>
                                           <ContextMenu onHidden="#continueRefreshing" onShown="#pauseRefreshing">
@@ -291,9 +292,11 @@
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Button mnemonicParsing="false" onAction="#addTable" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Button mnemonicParsing="false" onAction="#addTable" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                             <TextField fx:id="addTableNameField" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                             <Label text="Bezeichnung" GridPane.rowIndex="1" />
+                                                            <Label text="Sitzanzahl" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="addTableSeatsField" promptText="Sitzanzahl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                          </children>
                                                       </GridPane>
                                                    </children>
@@ -316,11 +319,13 @@
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Button mnemonicParsing="false" onAction="#editTable" text="Bearbeiten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Button mnemonicParsing="false" onAction="#editTable" text="Bearbeiten" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                             <TextField fx:id="editTableNameField" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                             <Label text="Bezeichnung" GridPane.rowIndex="1" />
                                                             <Label text="Tisch ID" />
                                                             <Label fx:id="editTableDLabel" text="    " GridPane.columnIndex="1" />
+                                                            <Label text="Sitzanzahl" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="editTableSeatsField" promptText="Sitzanzahl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                          </children>
                                                       </GridPane>
                                                    </children>

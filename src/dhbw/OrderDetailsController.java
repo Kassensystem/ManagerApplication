@@ -36,10 +36,6 @@ public class OrderDetailsController implements Initializable
 
 	public void initialize(OrderModel order, DatabaseService databaseService)
 	{
-		// TODO implementieren
-		// TODO aus der order die Daten im Fenster anzeigen
-		// TODO anhand der orderID die orderedItems ermitteln, dafür noch OrderedItemModel hinzufügen
-
 		orderIdLabel.setText(String.valueOf(order.getOrderID()));
 		orderPriceLabel.setText(String.valueOf(order.getPrice()) + " €");
 		orderTableLabel.setText(order.getTable());

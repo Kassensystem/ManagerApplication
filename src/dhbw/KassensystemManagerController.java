@@ -1,6 +1,9 @@
 package dhbw;
 
-import dhbw.datamodel.*;
+import dhbw.datamodel.ItemModel;
+import dhbw.datamodel.ItemdeliveryModel;
+import dhbw.datamodel.OrderModel;
+import dhbw.datamodel.TableModel;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;
@@ -17,8 +20,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -29,10 +33,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static dhbw.Main.primaryStage;
-
-public class KassensystemManagerController implements Initializable{
-
+public class KassensystemManagerController implements Initializable
+{
 	private String version = "1.1";
 
 	public Tab itemTab;
@@ -41,7 +43,6 @@ public class KassensystemManagerController implements Initializable{
 	public Tab itemdeliveryTab;
 
 	private DatabaseService databaseService = new DatabaseService();
-
 
 	/****Order-Tab****/
     public TableView orderTable;
@@ -303,7 +304,6 @@ public class KassensystemManagerController implements Initializable{
                         "DHBW-Stuttgart Jahrgang 2015\n");
     }
 
-
     /*******Order********/
     public void onOrderTabSelection(Event event) {
         if (orderTab.isSelected()) {
@@ -336,12 +336,18 @@ public class KassensystemManagerController implements Initializable{
 		Object order = orderTable.getSelectionModel().getSelectedItem();
 		try
 		{
-			Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager_orderDetails.fxml"));
-			Stage stage2 = new Stage();
-			stage2.setTitle("Bestelldetails");
-			stage2.setScene(new Scene(root, 450, 350));
-			stage2.show();
-			OrderDetailsController.initialize(((OrderModel) order));
+			FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("kassensystem_manager_orderDetails.fxml")
+			);
+
+			Stage stage = new Stage(StageStyle.DECORATED);
+			stage.setScene(new Scene((Pane) loader.load()));
+			stage.show();
+
+			OrderDetailsController orderDetailsController = loader.getController();
+
+			orderDetailsController.initialize((OrderModel) order, databaseService);
+
 		} catch (IOException e)
 		{
 			e.printStackTrace();
@@ -547,6 +553,17 @@ public class KassensystemManagerController implements Initializable{
         (new AlertBox()).display("Datenbank bereinigen", "Diese Funktion ist noch nicht verfügbar.\n" +
                 "Sie wird in einer späteren Version hinzugefügt.");
     }
+
+    // Doppelklick auf Order-Eintrag erkennen
+	public void onMouseClicked(MouseEvent mouseEvent)
+	{
+		if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+			if(mouseEvent.getClickCount() == 2){
+				System.out.println("Double clicked");
+				this.showOrderDetails(null);
+			}
+		}
+	}
 
 
     /*

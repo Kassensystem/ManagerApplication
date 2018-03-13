@@ -51,28 +51,36 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Label" GridPane.columnIndex="1">
+                  <Label fx:id="orderIdLabel" text="Label" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="orderPriceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="orderTableLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="orderDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
                </children>
             </GridPane>
+            <TableView fx:id="OrderedItemsTable" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="itemNameColumn" prefWidth="134.0" text="Artikel" />
+                <TableColumn fx:id="itemPriceColumn" prefWidth="75.0" text="Preis" />
+                  <TableColumn fx:id="itemProducedColumn" prefWidth="73.0" text="Produziert" />
+                  <TableColumn fx:id="itemPaidColumn" prefWidth="85.0" text="Bezahlt" />
+              </columns>
+            </TableView>
          </children>
       </VBox>
    </children>

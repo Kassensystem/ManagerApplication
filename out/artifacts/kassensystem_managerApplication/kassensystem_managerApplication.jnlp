@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="kassensystem_managerApplication.jnlp">
   <information>
-    <title>Kassensystem-Manager</title>
+    <title>kassensystem_managerApplication</title>
     <vendor>Unknown</vendor>
     <description>kassensystem_managerApplication</description>
     <offline-allowed/>
@@ -13,8 +13,8 @@
     <jar href="joda-time-2.9.9-no-tzdb.jar" size="430211" download="eager" />
     <jar href="joda-time-2.9.9-sources.jar" size="778815" download="eager" />
     <jar href="joda-time-2.9.9.jar" size="634048" download="eager" />
-    <jar href="kassensystem_database.jar" size="37590096" download="eager" />
-    <jar href="kassensystem_managerApplication.jar" size="21245" download="eager" />
+    <jar href="kassensystem_managerApplication.jar" size="25915" download="eager" />
+    <jar href="kassensystem_rest.jar" size="30676250" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="dhbw.Main"  name="kassensystem_managerApplication" />
   <update check="background"/>

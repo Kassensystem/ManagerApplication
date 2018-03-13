@@ -1,9 +1,6 @@
 package dhbw;
 
-import dhbw.datamodel.ItemModel;
-import dhbw.datamodel.ItemdeliveryModel;
-import dhbw.datamodel.OrderModel;
-import dhbw.datamodel.TableModel;
+import dhbw.datamodel.*;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.Itemdelivery;

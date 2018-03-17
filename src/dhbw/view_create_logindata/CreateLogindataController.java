@@ -49,7 +49,7 @@ public class CreateLogindataController
 
 		boolean passwordsMatch = passwort1.equals(passwort2);
 		String finalPassword = passwordsMatch ? passwort1 : null;
-		boolean loginnameAlreadyExists = databaseService.existsLogindataWithLoginname(loginname);
+		boolean loginnameAlreadyExists = update ? false : databaseService.existsLogindataWithLoginname(loginname);
 		String finalLoginname = loginnameAlreadyExists ? null : loginname;
 
 		// passwörter sind gleich und nicht leer und loginname existiert noch nicht in der DB und

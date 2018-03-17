@@ -13,7 +13,7 @@
     <jar href="joda-time-2.9.9-no-tzdb.jar" size="430211" download="eager" />
     <jar href="joda-time-2.9.9-sources.jar" size="778815" download="eager" />
     <jar href="joda-time-2.9.9.jar" size="634048" download="eager" />
-    <jar href="kassensystem_managerApplication.jar" size="31075" download="eager" />
+    <jar href="kassensystem_managerApplication.jar" size="35868" download="eager" />
     <jar href="kassensystem_rest.jar" size="30686343" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="dhbw.Main"  name="kassensystem_managerApplication" />

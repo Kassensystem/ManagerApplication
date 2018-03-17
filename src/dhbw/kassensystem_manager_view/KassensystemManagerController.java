@@ -1,9 +1,6 @@
 package dhbw.kassensystem_manager_view;
 
-import dhbw.AlertBox;
-import dhbw.ConfirmBox;
-import dhbw.CustomUncaughtExceptionHandler;
-import dhbw.Main;
+import dhbw.*;
 import dhbw.order_details_view.OrderDetailsController;
 import dhbw.datamodel.*;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
@@ -100,26 +97,28 @@ public class KassensystemManagerController implements Initializable
 	public TextField editTableSeatsField;
 
 	public TextField addTableNameField;
+
 	public TextField addTableSeatsField;
-
 	public Button editTableBtn;
-	public Button addTableBtn;
 
+	public Button addTableBtn;
 	/****Waiter****/
 	public Tab waiterTab;
 	public TableView waiterTable;
 	public TableColumn waiterTableWaiterIdColumn;
 	public TableColumn waiterTablePrenameColumn;
 	public TableColumn waiterTableLastnameColumn;
-	public TableColumn waiterTableEmployedColumn;
 
+	public TableColumn waiterTableEmployedColumn;
 	public ContextMenu waiterContextMenu;
 	public MenuItem unemployMenu;
 	public MenuItem createLogindataMenu;
+
 	public MenuItem editLogindataMenu;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+	{
 
         Thread.setDefaultUncaughtExceptionHandler(new CustomUncaughtExceptionHandler());
 
@@ -132,164 +131,228 @@ public class KassensystemManagerController implements Initializable
          */
     }
 
-    public void refreshData() {
-        DecimalFormat df = new DecimalFormat("#0.00");
-
-        refreshOrderData();
-        refreshItemData();
-        refreshTableData();
-        refreshItemdeliveryData();
-        refreshWaiterData();
+    public void closeProgram(ActionEvent actionEvent)
+	{
+        Main.closeProgram();
 
     }
 
-    private void refreshOrderData() {
-        //Sortierung sichern
-        TableColumn sortColumnOrderTable = null;
-        TableColumn.SortType sortTypeOrderTable = null;
-        if (!orderTable.getSortOrder().isEmpty()) {
-            sortColumnOrderTable = (TableColumn) orderTable.getSortOrder().get(0);
-            sortTypeOrderTable = sortColumnOrderTable.getSortType();
+    public void toggleFullscreen(ActionEvent actionEvent)
+	{
+        Main.toggleFullscreen();
+
+        if(Main.isFullscreen()) {
+            setMaximizedLayout();
         }
-        //Daten abrufen
-        ObservableList<OrderModel> orderData = FXCollections.observableArrayList();
+        else {
+            setSmallLayout();
+        }
+    }
 
-        ArrayList<Table> allTables = databaseService.getAllTables();
+    private void setSmallLayout()
+	{
+        if(itemSplitpane != null && tableSplitPane != null) {
+            itemSplitpane.setDividerPositions(0.65);
+            tableSplitPane.setDividerPositions(0.65);
+        }
+    }
 
-        for (Order o : databaseService.getAllOrders()) {
+    private void setMaximizedLayout()
+	{
+        itemSplitpane.setDividerPositions(0.8);
+        tableSplitPane.setDividerPositions(0.8);
+    }
 
-            String tableName = o.getTable(allTables).getName();
+    private void setSplitPaneLayout()
+	{
+        boolean maximized = Main.getPrimaryStage().isMaximized();
+        boolean fullscreen = Main.isFullscreen();
+        if(maximized || fullscreen)
+            setMaximizedLayout();
+        else
+            setSmallLayout();
+    }
 
-            Waiter waiter = databaseService.getWaiterByID(o.getWaiterID());
+    public void openAbout(ActionEvent actionEvent)
+	{
+        AlertBox.display("About",
+                "Kassensystem-Manager Verwaltungstool\n" +
+                        "Version " + version +"\n" +
+                        "by Daniel Schifano und Marvin Mai\n" +
+                        "DHBW-Stuttgart Jahrgang 2015\n");
+    }
 
-            orderData.add(
-            		new OrderModel(
-            				o.getOrderID(), o.getPrice(), o.getDate().toString("dd.MM.yyyy kk:mm:ss"),
+	public void cleanDatabase(ActionEvent actionEvent)
+	{
+		// TODO
+		(new AlertBox()).display("Datenbank bereinigen", "Diese Funktion ist noch nicht verfügbar.\n" +
+				"Sie wird in einer späteren Version hinzugefügt.");
+	}
+
+	/*****Daten aktualisieren******/
+	public void refreshData()
+	{
+		DecimalFormat df = new DecimalFormat("#0.00");
+
+		refreshOrderData();
+		refreshItemData();
+		refreshTableData();
+		refreshItemdeliveryData();
+		refreshWaiterData();
+
+	}
+
+	private void refreshOrderData()
+	{
+		//Sortierung sichern
+		TableColumn sortColumnOrderTable = null;
+		TableColumn.SortType sortTypeOrderTable = null;
+		if (!orderTable.getSortOrder().isEmpty()) {
+			sortColumnOrderTable = (TableColumn) orderTable.getSortOrder().get(0);
+			sortTypeOrderTable = sortColumnOrderTable.getSortType();
+		}
+		//Daten abrufen
+		ObservableList<OrderModel> orderData = FXCollections.observableArrayList();
+
+		ArrayList<Table> allTables = databaseService.getAllTables();
+
+		for (Order o : databaseService.getAllOrders()) {
+
+			String tableName = o.getTable(allTables).getName();
+
+			Waiter waiter = databaseService.getWaiterByID(o.getWaiterID());
+
+			orderData.add(
+					new OrderModel(
+							o.getOrderID(), o.getPrice(), o.getDate().toString("dd.MM.yyyy kk:mm:ss"),
 							tableName, o.getWaiterID(), waiter.getPrename() + " " + waiter.getLastname()
 					)
 			);
-        }
-        //Tabelle befüllen
-        orderTableIDColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Integer>("orderID"));
-        orderTablePriceColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Double>("price"));
-        orderTableTableColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("table"));
-        orderTableDateColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("date"));
+		}
+		//Tabelle befüllen
+		orderTableIDColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Integer>("orderID"));
+		orderTablePriceColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, Double>("price"));
+		orderTableTableColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("table"));
+		orderTableDateColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("date"));
 		orderTableWaiterIdColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("waiterID"));
 		orderTableWaiterNameColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("waiterName"));
 
-        orderTable.setItems(orderData);
-        //Gesicherte Sortierung wieder anwenden
-        if (sortColumnOrderTable != null) {
-            orderTable.getSortOrder().add(sortColumnOrderTable);
-            sortColumnOrderTable.setSortType(sortTypeOrderTable);
-            sortColumnOrderTable.setSortable(true);
-        }
-    }
+		orderTable.setItems(orderData);
+		//Gesicherte Sortierung wieder anwenden
+		if (sortColumnOrderTable != null) {
+			orderTable.getSortOrder().add(sortColumnOrderTable);
+			sortColumnOrderTable.setSortType(sortTypeOrderTable);
+			sortColumnOrderTable.setSortable(true);
+		}
+	}
 
-    private void refreshItemData() {
-        //Sortierung sichern
-        TableColumn sortColumnItemTable = null;
-        TableColumn.SortType sortTypeItemTable = null;
-        if(!itemTable.getSortOrder().isEmpty()) {
-            sortColumnItemTable = (TableColumn) itemTable.getSortOrder().get(0);
-            sortTypeItemTable = sortColumnItemTable.getSortType();
-        }
-        //Daten abrufen
-        ObservableList<ItemModel> itemData = FXCollections.observableArrayList();
+	private void refreshItemData()
+	{
+		//Sortierung sichern
+		TableColumn sortColumnItemTable = null;
+		TableColumn.SortType sortTypeItemTable = null;
+		if(!itemTable.getSortOrder().isEmpty()) {
+			sortColumnItemTable = (TableColumn) itemTable.getSortOrder().get(0);
+			sortTypeItemTable = sortColumnItemTable.getSortType();
+		}
+		//Daten abrufen
+		ObservableList<ItemModel> itemData = FXCollections.observableArrayList();
 
-        for(Item i: databaseService.getAllAvailableItems()) {
+		for(Item i: databaseService.getAllAvailableItems()) {
 			itemData.add(
 					new ItemModel(i.getItemID(), i.getName(), i.getRetailprice(), i.getQuantity())
 			);
-        }
-        //Tabelle befüllen
-        itemTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("itemID"));
-        itemTableNameColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, String>("name"));
-        itemTableRetailpriceColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Double>("retailprice"));
-        itemTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("quantity"));
+		}
+		//Tabelle befüllen
+		itemTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("itemID"));
+		itemTableNameColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, String>("name"));
+		itemTableRetailpriceColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Double>("retailprice"));
+		itemTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemModel, Integer>("quantity"));
 
-        itemTable.setItems(itemData);
-        //Gesicherte Sortierung wieder anwenden
-        if(sortColumnItemTable != null) {
-            itemTable.getSortOrder().add(sortColumnItemTable);
-            sortColumnItemTable.setSortType(sortTypeItemTable);
-            sortColumnItemTable.setSortable(true);
-        }
+		itemTable.setItems(itemData);
+		//Gesicherte Sortierung wieder anwenden
+		if(sortColumnItemTable != null) {
+			itemTable.getSortOrder().add(sortColumnItemTable);
+			sortColumnItemTable.setSortType(sortTypeItemTable);
+			sortColumnItemTable.setSortable(true);
+		}
 
-    }
+	}
 
-    private void refreshTableData() {
-        //Sortierung sichern
-        TableColumn sortColumnTableTable = null;
-        TableColumn.SortType sortTypeTableTable = null;
-        if(!tableTable.getSortOrder().isEmpty()) {
-            sortColumnTableTable = (TableColumn) tableTable.getSortOrder().get(0);
-            sortTypeTableTable = sortColumnTableTable.getSortType();
-        }
-        //Daten abrufen
-        ObservableList<TableModel> tableData = FXCollections.observableArrayList();
+	private void refreshTableData()
+	{
+		//Sortierung sichern
+		TableColumn sortColumnTableTable = null;
+		TableColumn.SortType sortTypeTableTable = null;
+		if(!tableTable.getSortOrder().isEmpty()) {
+			sortColumnTableTable = (TableColumn) tableTable.getSortOrder().get(0);
+			sortTypeTableTable = sortColumnTableTable.getSortType();
+		}
+		//Daten abrufen
+		ObservableList<TableModel> tableData = FXCollections.observableArrayList();
 
-        for(Table t: databaseService.getAllTables()) {
-            if(t.isAvailable())
-                tableData.add(new TableModel(t.getTableID(), t.getName(), t.getSeats()));
-        }
-        //Tabelle befüllen
-        tableTableIDColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("tableID"));
-        tableTableNameColumn.setCellValueFactory(new PropertyValueFactory<TableModel, String>("name"));
+		for(Table t: databaseService.getAllTables()) {
+			if(t.isAvailable())
+				tableData.add(new TableModel(t.getTableID(), t.getName(), t.getSeats()));
+		}
+		//Tabelle befüllen
+		tableTableIDColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("tableID"));
+		tableTableNameColumn.setCellValueFactory(new PropertyValueFactory<TableModel, String>("name"));
 		tableTableSeatsColumn.setCellValueFactory(new PropertyValueFactory<TableModel, Integer>("seats"));
 
-        tableTable.setItems(tableData);
-        //Gesicherte Sortierung wieder anwenden
-        if(sortColumnTableTable != null) {
-            tableTable.getSortOrder().add(sortColumnTableTable);
-            sortColumnTableTable.setSortType(sortTypeTableTable);
-            sortColumnTableTable.setSortable(true);
-        }
-    }
+		tableTable.setItems(tableData);
+		//Gesicherte Sortierung wieder anwenden
+		if(sortColumnTableTable != null) {
+			tableTable.getSortOrder().add(sortColumnTableTable);
+			sortColumnTableTable.setSortType(sortTypeTableTable);
+			sortColumnTableTable.setSortable(true);
+		}
+	}
 
-    private void refreshItemdeliveryData() {
-        //Sortierung sichern
-        TableColumn sortColumnItemdeliveryTable = null;
-        TableColumn.SortType sortTypeItemdeliveryTable = null;
-        if(!itemdeliveryTable.getSortOrder().isEmpty()) {
-            sortColumnItemdeliveryTable = (TableColumn) itemdeliveryTable.getSortOrder().get(0);
-            sortTypeItemdeliveryTable = sortColumnItemdeliveryTable.getSortType();
-        }
-        //Daten abrufen
-        ObservableList<ItemdeliveryModel> itemdeliveryData = FXCollections.observableArrayList();
+	private void refreshItemdeliveryData()
+	{
+		//Sortierung sichern
+		TableColumn sortColumnItemdeliveryTable = null;
+		TableColumn.SortType sortTypeItemdeliveryTable = null;
+		if(!itemdeliveryTable.getSortOrder().isEmpty()) {
+			sortColumnItemdeliveryTable = (TableColumn) itemdeliveryTable.getSortOrder().get(0);
+			sortTypeItemdeliveryTable = sortColumnItemdeliveryTable.getSortType();
+		}
+		//Daten abrufen
+		ObservableList<ItemdeliveryModel> itemdeliveryData = FXCollections.observableArrayList();
 
-        ArrayList<Itemdelivery> allItemdeliveries = databaseService.getAllItemdeliveries();
-        ArrayList<Item> allItems = databaseService.getAllItems();
+		ArrayList<Itemdelivery> allItemdeliveries = databaseService.getAllItemdeliveries();
+		ArrayList<Item> allItems = databaseService.getAllItems();
 
-        Itemdelivery ide;
-        Item item = new Item();
-        for(int i = 0; i < allItemdeliveries.size(); i++) {
-            ide = allItemdeliveries.get(i);
-            int itemdeliveryID = ide.getItemID();
-            for(Item it: allItems) {
-                if(it.getItemID() == itemdeliveryID)
-                    item = it;
-            }
-            if (item.isAvailable()) {
-                String itemName = item.getName();
-                itemdeliveryData.add(new ItemdeliveryModel(ide.getItemdeliveryID(), ide.getItemID(), itemName, ide.getQuantity()));
-            }
-        }
-        //Tabelle befüllen
-        itemdeliveryTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemdeliveryID"));
-        itemdeliveryTableItemIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemID"));
-        itemdeliveryTableItemNameColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, String>("itemName"));
-        itemdeliveryTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("quantity"));
+		Itemdelivery ide;
+		Item item = new Item();
+		for(int i = 0; i < allItemdeliveries.size(); i++) {
+			ide = allItemdeliveries.get(i);
+			int itemdeliveryID = ide.getItemID();
+			for(Item it: allItems) {
+				if(it.getItemID() == itemdeliveryID)
+					item = it;
+			}
+			if (item.isAvailable()) {
+				String itemName = item.getName();
+				itemdeliveryData.add(new ItemdeliveryModel(ide.getItemdeliveryID(), ide.getItemID(), itemName, ide.getQuantity()));
+			}
+		}
+		//Tabelle befüllen
+		itemdeliveryTableIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemdeliveryID"));
+		itemdeliveryTableItemIDColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("itemID"));
+		itemdeliveryTableItemNameColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, String>("itemName"));
+		itemdeliveryTableQuantityColumn.setCellValueFactory(new PropertyValueFactory<ItemdeliveryModel, Integer>("quantity"));
 
-        itemdeliveryTable.setItems(itemdeliveryData);
-        //Gesicherte Sortierung wieder anwenden
-        if(sortColumnItemdeliveryTable != null) {
-            itemdeliveryTable.getSortOrder().add(sortColumnItemdeliveryTable);
-            sortColumnItemdeliveryTable.setSortType(sortTypeItemdeliveryTable);
-            sortColumnItemdeliveryTable.setSortable(true);
-        }
+		itemdeliveryTable.setItems(itemdeliveryData);
+		//Gesicherte Sortierung wieder anwenden
+		if(sortColumnItemdeliveryTable != null) {
+			itemdeliveryTable.getSortOrder().add(sortColumnItemdeliveryTable);
+			sortColumnItemdeliveryTable.setSortType(sortTypeItemdeliveryTable);
+			sortColumnItemdeliveryTable.setSortable(true);
+		}
 
-    }
+	}
 
 	private void refreshWaiterData()
 	{
@@ -335,53 +398,9 @@ public class KassensystemManagerController implements Initializable
 
 	}
 
-
-    public void closeProgram(ActionEvent actionEvent) {
-        Main.closeProgram();
-    }
-
-    public void toggleFullscreen(ActionEvent actionEvent) {
-        Main.toggleFullscreen();
-
-        if(Main.isFullscreen()) {
-            setMaximizedLayout();
-        }
-        else {
-            setSmallLayout();
-        }
-    }
-
-    private void setSmallLayout() {
-        if(itemSplitpane != null && tableSplitPane != null) {
-            itemSplitpane.setDividerPositions(0.65);
-            tableSplitPane.setDividerPositions(0.65);
-        }
-    }
-
-    private void setMaximizedLayout() {
-        itemSplitpane.setDividerPositions(0.8);
-        tableSplitPane.setDividerPositions(0.8);
-    }
-
-    private void setSplitPaneLayout() {
-        boolean maximized = Main.getPrimaryStage().isMaximized();
-        boolean fullscreen = Main.isFullscreen();
-        if(maximized || fullscreen)
-            setMaximizedLayout();
-        else
-            setSmallLayout();
-    }
-
-    public void openAbout(ActionEvent actionEvent) {
-        AlertBox.display("About",
-                "Kassensystem-Manager Verwaltungstool\n" +
-                        "Version " + version +"\n" +
-                        "by Daniel Schifano und Marvin Mai\n" +
-                        "DHBW-Stuttgart Jahrgang 2015\n");
-    }
-
     /*******Order********/
-    public void onOrderTabSelection(Event event) {
+    public void onOrderTabSelection(Event event)
+	{
         if (orderTab.isSelected()) {
             System.out.println("LOG: Order-Tab selected");
             this.refreshOrderData();
@@ -390,49 +409,53 @@ public class KassensystemManagerController implements Initializable
         }
     }
 
-    public void printOrder(ActionEvent actionEvent) {
+    public void printOrder(ActionEvent actionEvent)
+	{
         Object item = orderTable.getSelectionModel().getSelectedItem();
         int orderID = ((OrderModel) item).getOrderID();
         databaseService.printOrderById(orderID);
     }
 
-    public void deleteOrder(ActionEvent actionEvent) {
+    public void deleteOrder(ActionEvent actionEvent)
+	{
         Object item = orderTable.getSelectionModel().getSelectedItem();
         int orderID = ((OrderModel) item).getOrderID();
         databaseService.deleteOrder(orderID);
         this.refreshData();
     }
 
-    public void editOrder(ActionEvent actionEvent) {
+    public void editOrder(ActionEvent actionEvent)
+	{
 
     }
 
 	public void showOrderDetails(ActionEvent actionEvent)
 	{
 		Object order = orderTable.getSelectionModel().getSelectedItem();
-		try
-		{
-			FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/dhbw/order_details_view/kassensystem_manager_orderDetails.fxml")
-			);
 
-			Stage window = new Stage(StageStyle.DECORATED);
-			window.initModality(Modality.APPLICATION_MODAL);
-			window.setScene(new Scene((Pane) loader.load()));
-			window.show();
+		WindowCreator windowCreator =
+				new WindowCreator("/dhbw/order_details_view/kassensystem_manager_orderDetails.fxml");
 
-			OrderDetailsController orderDetailsController = loader.getController();
+		OrderDetailsController orderDetailsController = (OrderDetailsController) windowCreator.getController();
 
-			orderDetailsController.initialize((OrderModel) order, databaseService);
+		windowCreator.setTitle("Bestellungs-Details");
 
-		} catch (IOException e)
-		{
-			e.printStackTrace();
+		orderDetailsController.initialize((OrderModel) order, databaseService);
+	}
+
+	public void onMouseClicked(MouseEvent mouseEvent)
+	{
+		if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+			if(mouseEvent.getClickCount() == 2){
+				System.out.println("Double clicked");
+				this.showOrderDetails(null);
+			}
 		}
 	}
 
-    /*******Item******/
-    public void onItemTabSelection(Event event) {
+	/*******Item******/
+    public void onItemTabSelection(Event event)
+	{
         if (itemTab.isSelected()) {
             System.out.println("LOG: Item-Tab selected");
             this.refreshItemData();
@@ -449,7 +472,8 @@ public class KassensystemManagerController implements Initializable
         }
     }
 
-    public void selectItem(MouseEvent mouseEvent) {
+    public void selectItem(MouseEvent mouseEvent)
+	{
         Object i = itemTable.getSelectionModel().getSelectedItem();
         if (i != null) {
             int itemID = ((ItemModel) i).getItemID();
@@ -467,7 +491,8 @@ public class KassensystemManagerController implements Initializable
         }
     }
 
-    public void deleteItem(ActionEvent actionEvent) {
+    public void deleteItem(ActionEvent actionEvent)
+	{
         Object item = itemTable.getSelectionModel().getSelectedItem();
         int itemID = ((ItemModel) item).getItemID();
         databaseService.deleteItem(itemID);
@@ -475,7 +500,8 @@ public class KassensystemManagerController implements Initializable
         this.refreshItemData();
     }
 
-    public void editItem(ActionEvent actionEvent) {
+    public void editItem(ActionEvent actionEvent)
+	{
         String name = editItemNameLabel.getText();
         String retailprice = editItemRetailpriceLabel.getText();
         String itemIDtext = itemIDLabel.getText();
@@ -504,7 +530,8 @@ public class KassensystemManagerController implements Initializable
 
     }
 
-    public void addItem(ActionEvent actionEvent) {
+    public void addItem(ActionEvent actionEvent)
+	{
         String name = itemNameLabel.getCharacters().toString();
         String retailprice = itemRetailpriceLabel.getCharacters().toString();
         String quantity = itemQuantityLabel.getCharacters().toString();
@@ -539,7 +566,8 @@ public class KassensystemManagerController implements Initializable
 	}
 
     /*******Table*******/
-    public void onTableTabSelection(Event event) {
+    public void onTableTabSelection(Event event)
+	{
         if(tableTab.isSelected()) {
             System.out.println("LOG: Table-Tab selected");
             addTableNameField.clear();
@@ -551,7 +579,8 @@ public class KassensystemManagerController implements Initializable
         }
     }
 
-    public void selectTable(MouseEvent mouseEvent) {
+    public void selectTable(MouseEvent mouseEvent)
+	{
         Object i = tableTable.getSelectionModel().getSelectedItem();
         if (i != null) {
             int tableID = ((TableModel) i).getTableID();
@@ -563,14 +592,16 @@ public class KassensystemManagerController implements Initializable
         }
     }
 
-    public void deleteTable(ActionEvent actionEvent) {
+    public void deleteTable(ActionEvent actionEvent)
+	{
         Object item = tableTable.getSelectionModel().getSelectedItem();
         int tableID = ((TableModel) item).getTableID();
         databaseService.deleteTable(tableID);
         this.refreshTableData();
     }
 
-    public void editTable(ActionEvent actionEvent) {
+    public void editTable(ActionEvent actionEvent)
+	{
         String name = editTableNameField.getText();
         String tableIDText = editTableDLabel.getText();
         int seats = Integer.parseInt(editTableSeatsField.getText());
@@ -595,7 +626,8 @@ public class KassensystemManagerController implements Initializable
             AlertBox.display("Error", "Bitte einen Tisch zum Bearbeiten auswählen.");
     }
 
-    public void addTable(ActionEvent actionEvent) {
+    public void addTable(ActionEvent actionEvent)
+	{
         String name = addTableNameField.getCharacters().toString();
         int seats = Integer.parseInt(addTableSeatsField.getCharacters().toString());
 
@@ -620,14 +652,16 @@ public class KassensystemManagerController implements Initializable
 	}
 
     /*******Itemdelivery********/
-    public void onItemdeliveryTabSelection(Event event) {
+    public void onItemdeliveryTabSelection(Event event)
+	{
         if (itemdeliveryTab.isSelected()) {
             System.out.println("LOG: Itemdelivery-Tab selected");
             this.refreshItemdeliveryData();
         }
     }
 
-    public void addItemdelivery(ActionEvent actionEvent) {
+    public void addItemdelivery(ActionEvent actionEvent)
+	{
         String itemIdText = addItemdeliveryItemIDLabel.getText();
         String quantityText = addItemdeliveryQuantityField.getText();
 
@@ -644,7 +678,8 @@ public class KassensystemManagerController implements Initializable
             AlertBox.display("Error", "Bitte eine Anzahl für den neuen Wareneingang eingeben.");
     }
 
-    public void deleteItemdelivery(ActionEvent actionEvent) {
+    public void deleteItemdelivery(ActionEvent actionEvent)
+	{
         Object item = itemdeliveryTable.getSelectionModel().getSelectedItem();
         int itemdeliveryID = ((ItemdeliveryModel) item).getItemdeliveryID();
         databaseService.deleteItemdelivery(itemdeliveryID);
@@ -657,13 +692,6 @@ public class KassensystemManagerController implements Initializable
 			addItemdeliveryBtn.fire();
 	}
 
-
-    public void cleanDatabase(ActionEvent actionEvent) {
-        // TODO
-        (new AlertBox()).display("Datenbank bereinigen", "Diese Funktion ist noch nicht verfügbar.\n" +
-                "Sie wird in einer späteren Version hinzugefügt.");
-    }
-
     /*********Waiter**********/
 	public void onWaiterTabSelection(Event event)
 	{
@@ -672,94 +700,6 @@ public class KassensystemManagerController implements Initializable
 			System.out.println("LOG: Waiter-Tab selected");
 			this.refreshWaiterData();
 		}
-	}
-
-	public void createLogindata(ActionEvent actionEvent)
-	{
-		Object waiterModel = waiterTable.getSelectionModel().getSelectedItem();
-		int waiterID = ((WaiterModel) waiterModel).getWaiterID();
-
-		if(databaseService.existsLogindataWithWaiterID(waiterID))
-			AlertBox.display("Login Erstellen fehlgeschlagen",
-					"Für die Bedienung mit der ID " + waiterID + " existiert bereits ein Login-Daten-Satz.");
-		else
-		{
-			showLogindataDialog((WaiterModel) waiterModel, false);
-		}
-	}
-
-	public void editLogindata(ActionEvent actionEvent)
-	{
-		Object waiterModel = waiterTable.getSelectionModel().getSelectedItem();
-		int waiterID = ((WaiterModel) waiterModel).getWaiterID();
-
-		if(!databaseService.existsLogindataWithWaiterID(waiterID))
-			AlertBox.display("Login Bearbeiten fehlgeschlagen",
-					"Für die Bedienung mit der ID " + waiterID + " existiert noch kein Login-Daten-Satz.");
-		else
-		{
-			showLogindataDialog((WaiterModel) waiterModel, true);
-		}
-	}
-
-	private void showLogindataDialog(WaiterModel waiterModel, boolean update)
-	{
-		Waiter waiter = databaseService.getWaiterByID(waiterModel.getWaiterID());
-
-		if (waiter.isEmployed())
-		{
-			try
-			{
-				FXMLLoader loader = new FXMLLoader(
-						getClass().getResource("/dhbw/view_create_logindata/create_logindata_view.fxml")
-				);
-
-				Stage window = new Stage(StageStyle.DECORATED);
-				window.initModality(Modality.APPLICATION_MODAL);
-				window.setScene(new Scene((Pane) loader.load()));
-				window.show();
-
-				CreateLogindataController createLogindataController = loader.getController();
-
-				createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService, window);
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		else
-		{
-			AlertBox.display("Nicht möglich!", "Für einen nicht angestellten Mitarbeiter können" +
-					" keine Login-Daten erstellt werden.");
-		}
-	}
-
-	public void updateWaiterContextMenu(MouseEvent mouseEvent)
-	{
-		if (mouseEvent.getButton().equals(MouseButton.SECONDARY))
-		{
-			WaiterModel waiterModel = (WaiterModel) waiterTable.getSelectionModel().getSelectedItem();
-
-			Waiter waiter = databaseService.getWaiterByID(waiterModel.getWaiterID());
-
-			if(waiter.isEmployed())
-				unemployMenu.setText("Kündigen");
-			else
-				unemployMenu.setText("Wieder beschäftigen");
-
-			if(databaseService.existsLogindataWithWaiterID(waiter.getWaiterID()))
-			{
-				editLogindataMenu.setDisable(false);
-				createLogindataMenu.setDisable(true);
-			}
-			else
-			{
-				editLogindataMenu.setDisable(true);
-				createLogindataMenu.setDisable(false);
-			}
-
-		}
-
 	}
 
 	public void createNewWaiter(ActionEvent actionEvent)
@@ -799,14 +739,83 @@ public class KassensystemManagerController implements Initializable
 		this.refreshWaiterData();
 	}
 
-	// Doppelklick auf Order-Eintrag erkennen
-	public void onMouseClicked(MouseEvent mouseEvent)
+	public void updateWaiterContextMenu(MouseEvent mouseEvent)
 	{
-		if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
-			if(mouseEvent.getClickCount() == 2){
-				System.out.println("Double clicked");
-				this.showOrderDetails(null);
+		if (mouseEvent.getButton().equals(MouseButton.SECONDARY))
+		{
+			WaiterModel waiterModel = (WaiterModel) waiterTable.getSelectionModel().getSelectedItem();
+
+			Waiter waiter = databaseService.getWaiterByID(waiterModel.getWaiterID());
+
+			if(waiter.isEmployed())
+				unemployMenu.setText("Kündigen");
+			else
+				unemployMenu.setText("Wieder beschäftigen");
+
+			if(databaseService.existsLogindataWithWaiterID(waiter.getWaiterID()))
+			{
+				editLogindataMenu.setDisable(false);
+				createLogindataMenu.setDisable(true);
 			}
+			else
+			{
+				editLogindataMenu.setDisable(true);
+				createLogindataMenu.setDisable(false);
+			}
+
+		}
+
+	}
+
+	/*******Login-Data*******/
+	public void createLogindata(ActionEvent actionEvent)
+	{
+		Object waiterModel = waiterTable.getSelectionModel().getSelectedItem();
+		int waiterID = ((WaiterModel) waiterModel).getWaiterID();
+
+		if(databaseService.existsLogindataWithWaiterID(waiterID))
+			AlertBox.display("Login Erstellen fehlgeschlagen",
+					"Für die Bedienung mit der ID " + waiterID + " existiert bereits ein Login-Daten-Satz.");
+		else
+		{
+			showLogindataDialog((WaiterModel) waiterModel, false);
+		}
+	}
+
+	public void editLogindata(ActionEvent actionEvent)
+	{
+		Object waiterModel = waiterTable.getSelectionModel().getSelectedItem();
+		int waiterID = ((WaiterModel) waiterModel).getWaiterID();
+
+		if(!databaseService.existsLogindataWithWaiterID(waiterID))
+			AlertBox.display("Login Bearbeiten fehlgeschlagen",
+					"Für die Bedienung mit der ID " + waiterID + " existiert noch kein Login-Daten-Satz.");
+		else
+		{
+			showLogindataDialog((WaiterModel) waiterModel, true);
+		}
+	}
+
+	private void showLogindataDialog(WaiterModel waiterModel, boolean update)
+	{
+		Waiter waiter = databaseService.getWaiterByID(waiterModel.getWaiterID());
+
+		if (waiter.isEmployed())
+		{
+			WindowCreator windowCreator =
+					new WindowCreator("/dhbw/view_create_logindata/create_logindata_view.fxml");
+
+			CreateLogindataController createLogindataController =
+					(CreateLogindataController) windowCreator.getController();
+
+			Stage window = windowCreator.getWindow();
+
+			createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService, window);
+		}
+		else
+		{
+			AlertBox.display("Nicht möglich!", "Für einen nicht angestellten Mitarbeiter können" +
+					" keine Login-Daten erstellt werden.");
 		}
 	}
 

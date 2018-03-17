@@ -1,2 +1,0 @@
-14.12.2017 13:11:25  null
-java.lang.IncompatibleClassChangeError

@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager_view/kassensystem_manager.fxml"));
         primaryStage.setTitle("Kassensystem-Manager");
         primaryStage.setScene(new Scene(root, 700, 550));
         primaryStage.show();

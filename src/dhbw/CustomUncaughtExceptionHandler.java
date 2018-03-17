@@ -17,7 +17,7 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
     private boolean debugging = false;
 
     /**
-     * Alle Exceptions des {@link KassensystemManagerController} werden hier abgefangen.
+     * Alle Exceptions des KassensystemManagerController werden hier abgefangen.
      * Die Exceptions {@link DataException}, {@link MySQLServerConnectionException}, {@link NoContentException},
      * und {@link OrderNotFoundException} werden in einer {@link AlertBox} dem Nutzer dargestellt. Außerdem werden
      * diese und alle anderen Exceptions in einer logging-Datei mit dem Namen {@param filename} abgespeichert.

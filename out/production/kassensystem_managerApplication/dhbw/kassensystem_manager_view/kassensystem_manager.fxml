@@ -109,7 +109,7 @@
                                                             <Insets bottom="10.0" left="10.0" top="10.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TextField fx:id="itemNameLabel" promptText="Artikelname" GridPane.columnIndex="1">
+                                                      <TextField fx:id="itemNameLabel" onKeyPressed="#createItemKeyPressed" promptText="Artikelname" GridPane.columnIndex="1">
                                                          <GridPane.margin>
                                                             <Insets right="10.0" />
                                                          </GridPane.margin>
@@ -119,7 +119,7 @@
                                                             <Insets bottom="10.0" left="10.0" top="10.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TextField fx:id="itemRetailpriceLabel" promptText="Verkaufspreis" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <TextField fx:id="itemRetailpriceLabel" onKeyPressed="#createItemKeyPressed" promptText="Verkaufspreis" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <GridPane.margin>
                                                             <Insets right="50.0" />
                                                          </GridPane.margin>
@@ -129,7 +129,7 @@
                                                             <Insets left="10.0" />
                                                          </GridPane.margin>
                                                       </Label>
-                                                      <TextField fx:id="itemQuantityLabel" promptText="Anzahl" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <TextField fx:id="itemQuantityLabel" onKeyPressed="#createItemKeyPressed" promptText="Anzahl" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <opaqueInsets>
                                                             <Insets />
                                                          </opaqueInsets>
@@ -155,7 +155,7 @@
                                                             <Insets bottom="10.0" left="10.0" top="10.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TextField fx:id="editItemNameLabel" promptText="Artikelname" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <TextField fx:id="editItemNameLabel" onKeyPressed="#editItemKeyPressed" promptText="Artikelname" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <GridPane.margin>
                                                             <Insets right="10.0" />
                                                          </GridPane.margin>
@@ -165,7 +165,7 @@
                                                             <Insets bottom="10.0" left="10.0" top="10.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TextField fx:id="editItemRetailpriceLabel" promptText="Verkaufspreis" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <TextField fx:id="editItemRetailpriceLabel" onKeyPressed="#editItemKeyPressed" promptText="Verkaufspreis" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <GridPane.margin>
                                                             <Insets right="50.0" />
                                                          </GridPane.margin>
@@ -209,12 +209,12 @@
                                                             <Insets bottom="10.0" left="10.0" top="10.0" />
                                                          </padding>
                                                       </Label>
-                                                      <TextField fx:id="addItemdeliveryQuantityField" promptText="Anzahl" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <TextField fx:id="addItemdeliveryQuantityField" onKeyPressed="#addItemdeliveryKeyPressed" promptText="Anzahl" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <GridPane.margin>
                                                             <Insets right="50.0" />
                                                          </GridPane.margin>
                                                       </TextField>
-                                                      <Button fx:id="addItemdelivery" mnemonicParsing="false" onAction="#addItemdelivery" text="Hinzufügen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                      <Button fx:id="addItemdeliveryBtn" mnemonicParsing="false" onAction="#addItemdelivery" text="Hinzufügen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                                                          <GridPane.margin>
                                                             <Insets right="10.0" />
                                                          </GridPane.margin>
@@ -294,11 +294,11 @@
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Button mnemonicParsing="false" onAction="#addTable" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <TextField fx:id="addTableNameField" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Button fx:id="addTableBtn" mnemonicParsing="false" onAction="#addTable" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <TextField fx:id="addTableNameField" onKeyPressed="#addTableKeyPressed" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                             <Label text="Bezeichnung" GridPane.rowIndex="1" />
                                                             <Label text="Sitzanzahl" GridPane.rowIndex="2" />
-                                                            <TextField fx:id="addTableSeatsField" promptText="Sitzanzahl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="addTableSeatsField" onKeyPressed="#addTableKeyPressed" promptText="Sitzanzahl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                          </children>
                                                       </GridPane>
                                                    </children>
@@ -321,13 +321,13 @@
                                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Button mnemonicParsing="false" onAction="#editTable" text="Bearbeiten" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <TextField fx:id="editTableNameField" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Button fx:id="editTableBtn" mnemonicParsing="false" onAction="#editTable" text="Bearbeiten" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <TextField fx:id="editTableNameField" onKeyPressed="#editTableKeyPressed" promptText="Bezeichnung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                             <Label text="Bezeichnung" GridPane.rowIndex="1" />
                                                             <Label text="Tisch ID" />
                                                             <Label fx:id="editTableDLabel" text="    " GridPane.columnIndex="1" />
                                                             <Label text="Sitzanzahl" GridPane.rowIndex="2" />
-                                                            <TextField fx:id="editTableSeatsField" promptText="Sitzanzahl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="editTableSeatsField" onKeyPressed="#editTableKeyPressed" promptText="Sitzanzahl" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                          </children>
                                                       </GridPane>
                                                    </children>
@@ -382,6 +382,7 @@
                            <contextMenu>
                               <ContextMenu fx:id="waiterContextMenu">
                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#createNewWaiter" text="Neuen Mitarbeiter anlegen" />
                                   <MenuItem fx:id="createLogindataMenu" mnemonicParsing="false" onAction="#createLogindata" text="Login-Daten anlegen" />
                                     <MenuItem fx:id="editLogindataMenu" mnemonicParsing="false" onAction="#editLogindata" text="Login-Daten bearbeiten" />
                                     <SeparatorMenuItem mnemonicParsing="false" />

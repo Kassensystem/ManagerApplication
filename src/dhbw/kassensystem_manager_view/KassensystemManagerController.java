@@ -19,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -66,6 +68,8 @@ public class KassensystemManagerController implements Initializable
 	public TextField itemNameLabel;
 	public TextField itemRetailpriceLabel;
 	public TextField itemQuantityLabel;
+	public Button addItemBtn;
+	public Button editItemBtn;
 
 	public Label itemIDLabel;
 	public TextField editItemNameLabel;
@@ -81,6 +85,7 @@ public class KassensystemManagerController implements Initializable
 	public Label addItemdeliveryItemIDLabel;
 	public Label addItemdeliveryItemNameLabel;
 	public TextField addItemdeliveryQuantityField;
+	public Button addItemdeliveryBtn;
 
 	/****Table-Tab****/
     public SplitPane tableSplitPane;
@@ -96,6 +101,9 @@ public class KassensystemManagerController implements Initializable
 
 	public TextField addTableNameField;
 	public TextField addTableSeatsField;
+
+	public Button editTableBtn;
+	public Button addTableBtn;
 
 	/****Waiter****/
 	public Tab waiterTab;
@@ -516,6 +524,20 @@ public class KassensystemManagerController implements Initializable
             AlertBox.display("Error", "Bitte eine Anzahl für den neuen Wareneingang eingeben.");
     }
 
+	public void createItemKeyPressed(KeyEvent keyEvent)
+	{
+		if(keyEvent.getCode() == KeyCode.ENTER)
+		{
+			addItemBtn.fire();
+		}
+	}
+
+	public void editItemKeyPressed(KeyEvent keyEvent)
+	{
+		if(keyEvent.getCode() == KeyCode.ENTER)
+			editItemBtn.fire();
+	}
+
     /*******Table*******/
     public void onTableTabSelection(Event event) {
         if(tableTab.isSelected()) {
@@ -585,6 +607,18 @@ public class KassensystemManagerController implements Initializable
 		addTableSeatsField.clear();
     }
 
+	public void addTableKeyPressed(KeyEvent keyEvent)
+	{
+		if(keyEvent.getCode() == KeyCode.ENTER)
+			addTableBtn.fire();
+	}
+
+	public void editTableKeyPressed(KeyEvent keyEvent)
+	{
+		if(keyEvent.getCode() == KeyCode.ENTER)
+			editTableBtn.fire();
+	}
+
     /*******Itemdelivery********/
     public void onItemdeliveryTabSelection(Event event) {
         if (itemdeliveryTab.isSelected()) {
@@ -616,6 +650,13 @@ public class KassensystemManagerController implements Initializable
         databaseService.deleteItemdelivery(itemdeliveryID);
         this.refreshItemdeliveryData();
     }
+
+    public void addItemdeliveryKeyPressed(KeyEvent keyEvent)
+	{
+		if(keyEvent.getCode() == KeyCode.ENTER)
+			addItemdeliveryBtn.fire();
+	}
+
 
     public void cleanDatabase(ActionEvent actionEvent) {
         // TODO
@@ -663,23 +704,33 @@ public class KassensystemManagerController implements Initializable
 
 	private void showLogindataDialog(WaiterModel waiterModel, boolean update)
 	{
-		try
+		Waiter waiter = databaseService.getWaiterByID(waiterModel.getWaiterID());
+
+		if (waiter.isEmployed())
 		{
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/dhbw/view_create_logindata/create_logindata_view.fxml")
-			);
+			try
+			{
+				FXMLLoader loader = new FXMLLoader(
+						getClass().getResource("/dhbw/view_create_logindata/create_logindata_view.fxml")
+				);
 
-			Stage window = new Stage(StageStyle.DECORATED);
-			window.initModality(Modality.APPLICATION_MODAL);
-			window.setScene(new Scene((Pane) loader.load()));
-			window.show();
+				Stage window = new Stage(StageStyle.DECORATED);
+				window.initModality(Modality.APPLICATION_MODAL);
+				window.setScene(new Scene((Pane) loader.load()));
+				window.show();
 
-			CreateLogindataController createLogindataController = loader.getController();
+				CreateLogindataController createLogindataController = loader.getController();
 
-			createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService, window);
-		} catch (IOException e)
+				createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService, window);
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		else
 		{
-			e.printStackTrace();
+			AlertBox.display("Nicht möglich!", "Für einen nicht angestellten Mitarbeiter können" +
+					" keine Login-Daten erstellt werden.");
 		}
 	}
 
@@ -711,6 +762,11 @@ public class KassensystemManagerController implements Initializable
 
 	}
 
+	public void createNewWaiter(ActionEvent actionEvent)
+	{
+
+	}
+
 	public void unemployWaiter(ActionEvent actionEvent)
 	{
 		WaiterModel waiterModel = (WaiterModel) waiterTable.getSelectionModel().getSelectedItem();
@@ -721,9 +777,13 @@ public class KassensystemManagerController implements Initializable
 		{
 			boolean sure = ConfirmBox.display("Sicher?", "Wollen Sie dem " +
 					"Mitarbeiter \n" + waiter.getPrename() + " " + waiter.getLastname() +
-					" kündigen?");
+					" kündigen und damit die Logindaten löschen?");
 			if(sure)
+			{
 				waiter.setEmployed(false);
+				// Logindaten löschen
+				databaseService.deleteLogindata(waiter.getWaiterID());
+			}
 		}
 		else
 		{

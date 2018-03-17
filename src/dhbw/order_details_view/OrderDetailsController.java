@@ -6,6 +6,7 @@ import dhbw.datamodel.TableModel;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.OrderedItem;
+import dhbw.sa.kassensystem_rest.database.entity.Waiter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -28,6 +29,7 @@ public class OrderDetailsController implements Initializable
 	public Label orderPriceLabel;
 	public Label orderTableLabel;
 	public Label orderDateLabel;
+	public Label orderWaiterLabel;
 
 	public TableColumn itemNameColumn;
 	public TableColumn itemPriceColumn;
@@ -40,6 +42,9 @@ public class OrderDetailsController implements Initializable
 		orderPriceLabel.setText(String.valueOf(order.getPrice()) + " €");
 		orderTableLabel.setText(order.getTable());
 		orderDateLabel.setText(order.getDate());
+		Waiter waiter = databaseService.getWaiterByID(order.getWaiterID());
+		orderWaiterLabel.setText(waiter.getWaiterID() + " - " +
+				waiter.getPrename() + " " + waiter.getLastname());
 
 		ArrayList<OrderedItem> orderedItems = databaseService.getOrderedItemsByOrderId(order.getOrderID());
 		ObservableList<OrderedItemModel> orderedItemData = FXCollections.observableArrayList();

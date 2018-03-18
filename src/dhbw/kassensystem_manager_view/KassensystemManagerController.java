@@ -5,6 +5,7 @@ import dhbw.order_details_view.OrderDetailsController;
 import dhbw.datamodel.*;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.*;
+import dhbw.view_add_waiter.AddWaiterController;
 import dhbw.view_create_logindata.CreateLogindataController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -194,11 +195,11 @@ public class KassensystemManagerController implements Initializable
 	{
 		DecimalFormat df = new DecimalFormat("#0.00");
 
-		refreshOrderData();
-		refreshItemData();
-		refreshTableData();
-		refreshItemdeliveryData();
-		refreshWaiterData();
+		if(orderTab.isSelected())	refreshOrderData();
+		if(itemTab.isSelected()) refreshItemData();
+		if(tableTab.isSelected()) refreshTableData();
+		if(itemdeliveryTab.isSelected()) refreshItemdeliveryData();
+		if(waiterTab.isSelected()) refreshWaiterData();
 
 	}
 
@@ -367,7 +368,7 @@ public class KassensystemManagerController implements Initializable
 		// Daten abrufen
 		ObservableList<WaiterModel> waiterData = FXCollections.observableArrayList();
 
-		ArrayList<Waiter> allWaiter =databaseService.getAllWaiters();
+		ArrayList<Waiter> allWaiter = databaseService.getAllWaiters();
 
 		for(Waiter w: allWaiter)
 		{
@@ -385,7 +386,7 @@ public class KassensystemManagerController implements Initializable
 		waiterTableWaiterIdColumn.setCellValueFactory(new PropertyValueFactory<WaiterModel, Integer>("waiterID"));
 		waiterTablePrenameColumn.setCellValueFactory(new PropertyValueFactory<WaiterModel, String>("prename"));
 		waiterTableLastnameColumn.setCellValueFactory(new PropertyValueFactory<WaiterModel, String>("lastname"));
-		waiterTableEmployedColumn.setCellValueFactory(new PropertyValueFactory<WaiterModel, String>("employed"));
+		waiterTableEmployedColumn.setCellValueFactory(new PropertyValueFactory<WaiterModel, Boolean>("employed"));
 
 		waiterTable.setItems(waiterData);
 		// Gesicherte Sortierung wiederherstellen
@@ -702,11 +703,6 @@ public class KassensystemManagerController implements Initializable
 		}
 	}
 
-	public void createNewWaiter(ActionEvent actionEvent)
-	{
-
-	}
-
 	public void unemployWaiter(ActionEvent actionEvent)
 	{
 		WaiterModel waiterModel = (WaiterModel) waiterTable.getSelectionModel().getSelectedItem();
@@ -737,6 +733,39 @@ public class KassensystemManagerController implements Initializable
 		databaseService.updateWaiter(waiter.getWaiterID(), waiter);
 
 		this.refreshWaiterData();
+	}
+
+	public void createNewWaiter(ActionEvent actionEvent)
+	{
+		showWaiterDialog(null, false);
+	}
+
+	public void editWaiter(ActionEvent actionEvent)
+	{
+		WaiterModel waiterModel = (WaiterModel) waiterTable.getSelectionModel().getSelectedItem();
+
+		showWaiterDialog(waiterModel, true);
+	}
+
+	private void showWaiterDialog(WaiterModel waiterModel, boolean update)
+	{
+		Waiter waiter = null;
+		if (waiterModel != null)
+		{
+			waiter = databaseService.getWaiterByID(waiterModel.getWaiterID());
+		}
+
+		WindowCreator windowCreator =
+				new WindowCreator("/dhbw/view_add_waiter/add_waiter_view.fxml");
+
+		((AddWaiterController) windowCreator.getController())
+				.initialize(
+						databaseService,
+						this,
+						update,
+						waiter,
+						windowCreator.getWindow()
+				);
 	}
 
 	public void updateWaiterContextMenu(MouseEvent mouseEvent)
@@ -810,7 +839,8 @@ public class KassensystemManagerController implements Initializable
 
 			Stage window = windowCreator.getWindow();
 
-			createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService, window);
+			createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService,
+					this, window);
 		}
 		else
 		{

@@ -1,5 +1,6 @@
 package dhbw.datamodel;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -8,18 +9,14 @@ public class WaiterModel
 	private SimpleIntegerProperty waiterID;
 	private SimpleStringProperty prename;
 	private SimpleStringProperty lastname;
-	private SimpleStringProperty employed;
+	private SimpleBooleanProperty employed;
 
 	public WaiterModel(int waiterID, String prename, String lastname, boolean employed)
 	{
 		this.waiterID = new SimpleIntegerProperty(waiterID);
 		this.prename = new SimpleStringProperty(prename);
 		this.lastname = new SimpleStringProperty(lastname);
-
-		String employedString;
-		if(employed)	employedString = "Ja";
-		else			employedString = "Nein";
-		this.employed = new SimpleStringProperty(employedString);
+		this.employed = new SimpleBooleanProperty(employed);
 	}
 
 	public int getWaiterID()
@@ -67,17 +64,17 @@ public class WaiterModel
 		this.lastname.set(lastname);
 	}
 
-	public String getEmployed()
+	public boolean getEmployed()
 	{
 		return employed.get();
 	}
 
-	public SimpleStringProperty employedProperty()
+	public SimpleBooleanProperty employedProperty()
 	{
 		return employed;
 	}
 
-	public void setEmployed(String employed)
+	public void setEmployed(boolean employed)
 	{
 		this.employed.set(employed);
 	}

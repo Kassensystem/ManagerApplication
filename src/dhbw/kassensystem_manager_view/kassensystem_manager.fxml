@@ -383,6 +383,7 @@
                               <ContextMenu fx:id="waiterContextMenu">
                                 <items>
                                     <MenuItem mnemonicParsing="false" onAction="#createNewWaiter" text="Neuen Mitarbeiter anlegen" />
+                                    <MenuItem mnemonicParsing="false" onAction="#editWaiter" text="Mitarbeiter bearbeiten" />
                                   <MenuItem fx:id="createLogindataMenu" mnemonicParsing="false" onAction="#createLogindata" text="Login-Daten anlegen" />
                                     <MenuItem fx:id="editLogindataMenu" mnemonicParsing="false" onAction="#editLogindata" text="Login-Daten bearbeiten" />
                                     <SeparatorMenuItem mnemonicParsing="false" />

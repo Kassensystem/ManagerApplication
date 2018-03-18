@@ -1,16 +1,22 @@
 package dhbw.view_create_logindata;
 
 import dhbw.AlertBox;
+import dhbw.ConfirmBox;
 import dhbw.datamodel.WaiterModel;
+import dhbw.kassensystem_manager_view.KassensystemManagerController;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Logindata;
+import dhbw.sa.kassensystem_rest.database.entity.Waiter;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class CreateLogindataController
 {
 	private DatabaseService databaseService;
+	KassensystemManagerController kmController;
 	private Stage window;
 	private boolean update;
 
@@ -22,9 +28,11 @@ public class CreateLogindataController
 	public PasswordField passwort2Field;
 	public Button createLogindataButton;
 
-	public void initialize(WaiterModel waiterModel, boolean update, DatabaseService databaseService, Stage window)
+	public void initialize(WaiterModel waiterModel, boolean update, DatabaseService databaseService,
+						   KassensystemManagerController kmController, Stage window)
 	{
 		this.databaseService = databaseService;
+		this.kmController = kmController;
 		this.update = update;
 		this.window = window;
 		this.waiterID = waiterModel.getWaiterID();
@@ -56,7 +64,13 @@ public class CreateLogindataController
 		if(passwordsMatch && !loginnameAlreadyExists && !passwort1.isEmpty())
 		{
 			// Passwort-Daten ausdrucken
-
+			boolean print = ConfirmBox.display("Ausdrucken", "Sollen die Login-Daten in " +
+					"KLARTEXT ausgedruckt werden?");
+			if (print)
+			{
+				Waiter waiter = databaseService.getWaiterByID(waiterID);
+				databaseService.printLogindata(finalLoginname, finalPassword, waiter);
+			}
 
 			Logindata logindata = new Logindata(waiterID, finalLoginname, String.valueOf(finalPassword.hashCode()));
 
@@ -97,5 +111,12 @@ public class CreateLogindataController
 
 			AlertBox.display("Fehler", error);
 		}
+		kmController.refreshData();
+	}
+
+	public void logindataKeyPressed(KeyEvent keyEvent)
+	{
+		if(keyEvent.getCode() == KeyCode.ENTER)
+			createLogindataButton.fire();
 	}
 }

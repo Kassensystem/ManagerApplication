@@ -28,10 +28,10 @@
                   <Label text="Name der Bedienung" />
                   <Label text="Login-Name" GridPane.rowIndex="1" />
                   <Label text="Passwort" GridPane.rowIndex="2" />
-                  <TextField fx:id="loginnameField" promptText="Login-Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="loginnameField" onKeyPressed="#logindataKeyPressed" promptText="Login-Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Passwort wiederholen" GridPane.rowIndex="3" />
-                  <PasswordField fx:id="passwort1Field" promptText="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <PasswordField fx:id="passwort2Field" promptText="Passwort wiederholen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="passwort1Field" onKeyPressed="#logindataKeyPressed" promptText="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="passwort2Field" onKeyPressed="#logindataKeyPressed" promptText="Passwort wiederholen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label fx:id="waiterNameLabel" text="Label" GridPane.columnIndex="1" />
                   <Button fx:id="createLogindataButton" mnemonicParsing="false" onAction="#createLogindata" text="Bestätigen" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>

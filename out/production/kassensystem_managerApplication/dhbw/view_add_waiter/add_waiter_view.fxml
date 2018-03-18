@@ -5,9 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="301.0"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dhbw.view_add_waiter.AddWaiterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dhbw.view_add_waiter.AddWaiterController">
    <children>
       <GridPane hgap="10.0" layoutX="186.0" layoutY="139.0" prefHeight="166.0" prefWidth="301.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -23,7 +21,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <Button mnemonicParsing="false" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="waiterBtn" mnemonicParsing="false" onAction="#waiterButtonPressed" text="Hinzufügen" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Vorname" />
             <Label text="Nachname" GridPane.rowIndex="1" />
             <TextField fx:id="addWaiterPrenameField" onKeyPressed="#addWaiterKeyPressed" GridPane.columnIndex="1" />

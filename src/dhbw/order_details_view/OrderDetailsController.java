@@ -35,6 +35,7 @@ public class OrderDetailsController implements Initializable
 	public TableColumn itemPriceColumn;
 	public TableColumn itemProducedColumn;
 	public TableColumn itemPaidColumn;
+	public TableColumn itemCommentColumn;
 
 	public void initialize(OrderModel order, DatabaseService databaseService)
 	{
@@ -56,12 +57,14 @@ public class OrderDetailsController implements Initializable
 			double price = item.getRetailprice();
 			boolean paid = o.isItemPaid();
 			boolean produced = o.isItemProduced();
-			orderedItemData.add(new OrderedItemModel(name, price, paid, produced));
+			String comment = o.getComment();
+			orderedItemData.add(new OrderedItemModel(name, price, paid, produced, comment));
 		}
 		itemNameColumn.setCellValueFactory(new PropertyValueFactory<OrderModel, String>("name"));
 		itemPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderedItemModel, Double>("price"));
 		itemPaidColumn.setCellValueFactory(new PropertyValueFactory<OrderedItemModel, Boolean>("paid"));
 		itemProducedColumn.setCellValueFactory(new PropertyValueFactory<OrderedItemModel, Boolean>("produced"));
+		itemCommentColumn.setCellValueFactory(new PropertyValueFactory<OrderedItemModel, String>("comment"));
 
 		OrderedItemsTable.setItems(orderedItemData);
 	}

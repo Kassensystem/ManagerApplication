@@ -89,6 +89,7 @@
                 <TableColumn fx:id="itemPriceColumn" prefWidth="75.0" text="Preis" />
                   <TableColumn fx:id="itemProducedColumn" prefWidth="73.0" text="Produziert" />
                   <TableColumn fx:id="itemPaidColumn" prefWidth="85.0" text="Bezahlt" />
+                  <TableColumn fx:id="itemCommentColumn" prefWidth="165.0" text="Kommentar" />
               </columns>
             </TableView>
          </children>

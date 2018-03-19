@@ -32,7 +32,8 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
                 || rootCause instanceof OrderNotFoundException
                 || rootCause instanceof NoContentException;
 
-        if (!isCustomException) {
+        if (!isCustomException)
+        {
             try {
                 ArrayList<String> logging = null;
                 try {

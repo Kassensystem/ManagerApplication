@@ -361,7 +361,7 @@ public class KassensystemManagerController implements Initializable
 		TableColumn sortColumnWaiterTable = null;
 		TableColumn.SortType sortTypeWaiterTable = null;
 		if (!waiterTable.getSortOrder().isEmpty()) {
-			sortColumnWaiterTable = (TableColumn) orderTable.getSortOrder().get(0);
+			sortColumnWaiterTable = (TableColumn) waiterTable.getSortOrder().get(0);
 			sortTypeWaiterTable = sortColumnWaiterTable.getSortType();
 		}
 

@@ -7,6 +7,7 @@ import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.*;
 import dhbw.view_add_waiter.AddWaiterController;
 import dhbw.view_create_logindata.CreateLogindataController;
+import dhbw.view_data_conflict.ViewDataConflictController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -666,14 +667,86 @@ public class KassensystemManagerController implements Initializable
         String itemIdText = addItemdeliveryItemIDLabel.getText();
         String quantityText = addItemdeliveryQuantityField.getText();
 
-
-        if(!quantityText.isEmpty()) {
+        if(!quantityText.isEmpty())
+        {
             int itemID = Integer.parseInt(itemIdText);
-            int quantity = Integer.parseInt(quantityText);
-            Itemdelivery itemdelivery = new Itemdelivery(itemID, quantity);
-            databaseService.addItemdelivery(itemdelivery);
-            this.refreshData();
-            addItemdeliveryQuantityField.clear();
+			int addedQuantity = Integer.parseInt(quantityText);
+
+			// Überprüfen, ob mit der eingegebenen Anzahl ein negativer Warenbestand entsteht
+			// und der neue Wareneingang positiv ist.
+			// Das Hinzufügen eines positiven Wareneingangs soll auch möglich sein, wenn dadurch ein negativer
+			// Warenbestand entsteht. (Für Korrektur des Warenbestandes)
+            Item editedItem = databaseService.getItemById(itemID);
+			int currentQuantity = editedItem.getQuantity();
+            int newQuantity = currentQuantity + addedQuantity;
+            if(newQuantity < 0 && addedQuantity < 0)
+			{
+				// Ein negativer Wareneingang entsteht und der neue Wareneingang ist negativ
+				// Überprüfen, ob mindestens so viele unproduzierte items existieren wie der Warenbestand
+				// negativ wird.
+				int numberOfUnprducedItems = databaseService.getAllUnproducedOrderedItemsByItemId(itemID).size();
+				if(numberOfUnprducedItems < Math.abs(newQuantity))
+				{
+					// Es existieren nicht ausreichend unproduzierte OrderedItems.
+					// Es handelt sich vermutlich um einen Fehler, da nicht mehr Artikel entfernt werden können,
+					// als überhaupt existieren (existierende items = unproduzierte + warenbestand)
+					boolean undoItemdeliveryEntry = ConfirmBox
+							.display("Datenkonflikt", "Es wurde ein Datenkonflikt registriert.\n" +
+									"Mit dem Hinzufügen dieses Warenausgangs wird der Warenbestand des Artikels " +
+									"\"" + editedItem.getName() + "\" negativ (" + newQuantity + "). \n" +
+									"Es existieren allerdings nur " + numberOfUnprducedItems + " unproduzierte Artikel" +
+									" für \""+editedItem.getName() + "\". \n" +
+									"Daher handelt es sich bei Ihrer Eingabe vermutlich um einen Fehler oder der " +
+									"bisherige Warenbestand war nicht korrekt. \n" +
+									"Möchten Sie den eingegebenen Warenbestand rückgängig machen?");
+
+					addItemdeliveryQuantityField.clear();
+
+					if(!undoItemdeliveryEntry)
+					{
+						Itemdelivery itemdelivery = new Itemdelivery(itemID, addedQuantity);
+						databaseService.addItemdelivery(itemdelivery);
+						this.refreshData();
+
+						AlertBox
+								.display(
+										"Bitte Warenbestand korrigieren",
+										"Da der bisherige Warenbestand nicht korrekt war, müssen Sie diesen " +
+												"korrigieren.\n" +
+												"Sie müssen einen Wareneingang von mindestens " +
+												Math.abs(newQuantity) + " mal " + editedItem.getName() + " vergessen " +
+												"haben.");
+					}
+				}
+				else
+				{
+					// es existieren genug unproduzierte Items um den Datenkonflikt zu beheben
+					// Anzeigen des Dialoges zum manuellen beheben des Datenkonfliktes
+					addItemdeliveryQuantityField.clear();
+					Itemdelivery itemdelivery = new Itemdelivery(itemID, addedQuantity);
+					databaseService.addItemdelivery(itemdelivery);
+					this.refreshData();
+
+					WindowCreator windowCreator =
+							new WindowCreator("/dhbw/view_data_conflict/view_data_conflict.fxml");
+
+					((ViewDataConflictController) windowCreator.getController())
+							.initialize(
+									databaseService,
+									this,
+									itemID,
+									windowCreator.getWindow()
+							);
+				}
+			}
+			else
+			{
+				Itemdelivery itemdelivery = new Itemdelivery(itemID, addedQuantity);
+				databaseService.addItemdelivery(itemdelivery);
+				this.refreshData();
+				addItemdeliveryQuantityField.clear();
+			}
+
         }
         else
             AlertBox.display("Error", "Bitte eine Anzahl für den neuen Wareneingang eingeben.");

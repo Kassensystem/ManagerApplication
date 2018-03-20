@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dhbw.view_data_conflict.ViewDataConflictController">
+   <children>
+      <VBox layoutX="235.0" layoutY="69.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <Label fx:id="textLabel" prefHeight="74.0" prefWidth="560.0" text="Für den Artikel &quot;...&quot; wurde ein negativer Warenbestand registriert. Im Folgenden werden alle bestellten Aritkel aufgelistet, die noch nicht produziert wurden. Bitte löschen Sie so viele Artikel, bis der negative Warenbestand behoben wurde. " textAlignment="JUSTIFY" wrapText="true" />
+            <HBox prefHeight="35.0" prefWidth="560.0" spacing="10.0">
+               <children>
+                  <Label text="Warenbestand:" />
+                  <Label fx:id="quantityLabel" text="X" />
+               </children>
+            </HBox>
+            <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                  <TableColumn fx:id="orderedItemIdColumn" prefWidth="45.0" text="ID" />
+                <TableColumn fx:id="itemIDColumn" prefWidth="68.0" text="Artikel-ID" />
+                <TableColumn fx:id="itemNameColumn" prefWidth="162.0" text="Artikel Name" />
+                  <TableColumn fx:id="orderIDColumn" prefWidth="75.0" text="Order-ID" />
+                  <TableColumn fx:id="tableNameColumn" prefWidth="75.0" text="Tisch" />
+                  <TableColumn fx:id="timestampColumn" prefWidth="138.0" text="Uhrzeit" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#deleteOrderedItem" text="Löschen" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <HBox prefHeight="28.0" prefWidth="560.0" spacing="10.0">
+               <children>
+                  <CheckBox fx:id="printCheckbox" mnemonicParsing="false" text="Gelöschte Artikel ausdrucken">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Es wird ein Beleg ausgedruckt, auf dem alle Tische vermerkt sind, die über den fehlenden Artikel informiert werden müssen." textAlignment="JUSTIFY" wrapText="true" />
+                     </tooltip>
+                  </CheckBox>
+                  <Button fx:id="approveButton" alignment="TOP_LEFT" disable="true" mnemonicParsing="false" onAction="#approveButtonPressed" text="Bestätigen">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="250.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

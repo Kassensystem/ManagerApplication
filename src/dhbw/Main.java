@@ -6,13 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Einstiegs-Klasse der JavaFX-Application.
+ *
+ * @author Marvin Mai
+ */
 public class Main extends Application {
 
-    static Stage primaryStage;
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        this.primaryStage = primaryStage;
+        Main.primaryStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("kassensystem_manager_view/kassensystem_manager.fxml"));
         primaryStage.setTitle("Kassensystem-Manager");
         primaryStage.setScene(new Scene(root, 700, 550));

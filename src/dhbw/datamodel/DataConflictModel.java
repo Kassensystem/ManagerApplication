@@ -5,12 +5,12 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class DataConflictModel
 {
-	private SimpleIntegerProperty orderedItemID;
-	private SimpleIntegerProperty itemID;
-	private SimpleStringProperty itemName;
-	private SimpleIntegerProperty orderID;
-	private SimpleStringProperty tableName;
-	private SimpleStringProperty date;
+	private final SimpleIntegerProperty orderedItemID;
+	private final SimpleIntegerProperty itemID;
+	private final SimpleStringProperty itemName;
+	private final SimpleIntegerProperty orderID;
+	private final SimpleStringProperty tableName;
+	private final SimpleStringProperty date;
 
 	public DataConflictModel(int orderedItemID, int itemID, String itemName, int orderID, String tableName, String date)
 	{

@@ -13,10 +13,7 @@ import java.util.ArrayList;
 
 public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 
-    private String filename = "errorlog.txt";
-    private boolean debugging = false;
-
-    /**
+	/**
      * Alle Exceptions des KassensystemManagerController werden hier abgefangen.
      * Die Exceptions {@link DataException}, {@link MySQLServerConnectionException}, {@link NoContentException},
      * und {@link OrderNotFoundException} werden in einer {@link AlertBox} dem Nutzer dargestellt. Außerdem werden
@@ -36,7 +33,8 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
         {
             try {
                 ArrayList<String> logging = null;
-                try {
+				String filename = "errorlog.txt";
+				try {
                     BufferedReader reader = new BufferedReader(new FileReader(filename));
                     logging = new ArrayList<>();
                     while(reader.ready()) {
@@ -57,9 +55,9 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
 
                 String loggingText = rootCause.getMessage();
 
-                String date = DateTime.now().toString("dd.MM.yyyy kk:mm:ss");
-                String status = date;
-                if(debugging)
+				String status = DateTime.now().toString("dd.MM.yyyy kk:mm:ss");
+				boolean debugging = false;
+				if(debugging)
                     status += "  DEBUG";
                 logger.write(status + "  " + loggingText);
 
@@ -84,7 +82,7 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
                     e.printStackTrace();
                 }
 
-            } catch (IOException e1) { }
+            } catch (IOException e1) { e.printStackTrace();}
         }
         else
             AlertBox.display("Error", rootCause.getMessage());
@@ -95,8 +93,8 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
      * @param e Exception, deren RootCause ermittelt werden soll.
      * @return {@link Throwable} RootCause der Exception e.
      */
-    Throwable getRootCause(Throwable e) {
-        Throwable cause = null;
+	private Throwable getRootCause(Throwable e) {
+        Throwable cause;
         Throwable result = e;
 
         while(null != (cause = result.getCause())  && (result != cause) ) {

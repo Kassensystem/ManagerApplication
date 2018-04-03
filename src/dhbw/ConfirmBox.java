@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class ConfirmBox
 {
 	
-	static boolean answer;
+	private static boolean answer;
 	
 	
 	public static boolean display(String title, String message) {

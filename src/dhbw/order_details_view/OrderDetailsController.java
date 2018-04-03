@@ -2,7 +2,6 @@ package dhbw.order_details_view;
 
 import dhbw.datamodel.OrderModel;
 import dhbw.datamodel.OrderedItemModel;
-import dhbw.datamodel.TableModel;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.Item;
 import dhbw.sa.kassensystem_rest.database.entity.OrderedItem;

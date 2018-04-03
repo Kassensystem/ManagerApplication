@@ -15,12 +15,12 @@ import javafx.stage.Stage;
 
 public class CreateLogindataController
 {
-	private DatabaseService databaseService;
-	KassensystemManagerController kmController;
-	private Stage window;
-	private boolean update;
+	public DatabaseService databaseService;
+	public KassensystemManagerController kmController;
+	public Stage window;
+	public boolean update;
 
-	private int waiterID;
+	public int waiterID;
 
 	public Label waiterNameLabel;
 	public TextField loginnameField;

@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 
 public class AddWaiterController
 {
-	private DatabaseService databaseService;
-	private KassensystemManagerController kmController;
-	private boolean update;
-	private Stage window;
-	private Waiter waiter;
+	public DatabaseService databaseService;
+	public KassensystemManagerController kmController;
+	public boolean update;
+	public Stage window;
+	public Waiter waiter;
 
 	public TextField addWaiterPrenameField;
 	public TextField addWaiterLastnameField;

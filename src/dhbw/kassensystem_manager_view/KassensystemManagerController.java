@@ -13,22 +13,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,17 +30,16 @@ import java.util.ResourceBundle;
 
 public class KassensystemManagerController implements Initializable
 {
-	private String version = "1.1";
 
 	public Tab itemTab;
 	public Tab orderTab;
 	public Tab tableTab;
 	public Tab itemdeliveryTab;
 
-	private DatabaseService databaseService = new DatabaseService();
+	public final DatabaseService databaseService = new DatabaseService();
 
 	/****Order-Tab****/
-    public TableView orderTable;
+	public TableView orderTable;
 	public TableColumn orderTableIDColumn;
 	public TableColumn orderTablePriceColumn;
 	public TableColumn orderTableTableColumn;
@@ -56,7 +49,7 @@ public class KassensystemManagerController implements Initializable
 
 
 	/****Item-Tab****/
-    public SplitPane itemSplitpane;
+	public SplitPane itemSplitpane;
 
 	public TableView itemTable;
 	public TableColumn itemTableIDColumn;
@@ -75,7 +68,7 @@ public class KassensystemManagerController implements Initializable
 	public TextField editItemRetailpriceLabel;
 
 	/****Itemdelivery-Tab****/
-    public TableView itemdeliveryTable;
+	public TableView itemdeliveryTable;
 	public TableColumn itemdeliveryTableIDColumn;
 	public TableColumn itemdeliveryTableItemIDColumn;
 	public TableColumn itemdeliveryTableItemNameColumn;
@@ -87,7 +80,7 @@ public class KassensystemManagerController implements Initializable
 	public Button addItemdeliveryBtn;
 
 	/****Table-Tab****/
-    public SplitPane tableSplitPane;
+	public SplitPane tableSplitPane;
 
 	public TableView tableTable;
 	public TableColumn tableTableIDColumn;
@@ -177,7 +170,8 @@ public class KassensystemManagerController implements Initializable
 
     public void openAbout(ActionEvent actionEvent)
 	{
-        AlertBox.display("About",
+		String version = "1.1";
+		AlertBox.display("About",
                 "Kassensystem-Manager Verwaltungstool\n" +
                         "Version " + version +"\n" +
                         "by Daniel Schifano und Marvin Mai\n" +
@@ -424,11 +418,6 @@ public class KassensystemManagerController implements Initializable
         int orderID = ((OrderModel) item).getOrderID();
         databaseService.deleteOrder(orderID);
         this.refreshData();
-    }
-
-    public void editOrder(ActionEvent actionEvent)
-	{
-
     }
 
 	public void showOrderDetails(ActionEvent actionEvent)
@@ -923,7 +912,7 @@ public class KassensystemManagerController implements Initializable
 
 			Stage window = windowCreator.getWindow();
 
-			createLogindataController.initialize((WaiterModel) waiterModel, update, databaseService,
+			createLogindataController.initialize(waiterModel, update, databaseService,
 					this, window);
 		}
 		else
@@ -938,7 +927,7 @@ public class KassensystemManagerController implements Initializable
      * Methoden für späteres Einbinden des Refresh-Threads
      */
 
-    public Thread refreshThread;
+    private Thread refreshThread;
 
 	private static final class Lock { }
     private final Object lock = new Lock();

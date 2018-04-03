@@ -2,11 +2,9 @@ package dhbw.view_data_conflict;
 
 import dhbw.AlertBox;
 import dhbw.datamodel.DataConflictModel;
-import dhbw.datamodel.TableModel;
 import dhbw.kassensystem_manager_view.KassensystemManagerController;
 import dhbw.sa.kassensystem_rest.database.databaseservice.DatabaseService;
 import dhbw.sa.kassensystem_rest.database.entity.OrderedItem;
-import dhbw.sa.kassensystem_rest.database.entity.Table;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,17 +12,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class ViewDataConflictController
 {
-	private DatabaseService databaseService;
-	private KassensystemManagerController kmc;
-	private int itemID;
-	private Stage window;
+	public DatabaseService databaseService;
+	public KassensystemManagerController kmc;
+	public int itemID;
+	public Stage window;
 
-	private ArrayList<OrderedItem> removedOrderedItems = new ArrayList<>();
+	public final ArrayList<OrderedItem> removedOrderedItems = new ArrayList<>();
 
 	public Label textLabel;
 	public Label quantityLabel;

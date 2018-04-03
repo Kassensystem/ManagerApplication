@@ -6,10 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class WaiterModel
 {
-	private SimpleIntegerProperty waiterID;
-	private SimpleStringProperty prename;
-	private SimpleStringProperty lastname;
-	private SimpleBooleanProperty employed;
+	private final SimpleIntegerProperty waiterID;
+	private final SimpleStringProperty prename;
+	private final SimpleStringProperty lastname;
+	private final SimpleBooleanProperty employed;
 
 	public WaiterModel(int waiterID, String prename, String lastname, boolean employed)
 	{

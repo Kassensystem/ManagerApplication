@@ -606,15 +606,15 @@ public class KassensystemManagerController implements Initializable
 	{
         String name = editTableNameField.getText();
         String tableIDText = editTableDLabel.getText();
-        int seats = Integer.parseInt(editTableSeatsField.getText());
+        String seats = editTableSeatsField.getText();
 
 
-        if (!tableIDText.isEmpty()) {
+        if (!tableIDText.isEmpty() && !name.isEmpty() && !seats.isEmpty()) {
             int tableID = Integer.parseInt(tableIDText);
             Table oldTable = databaseService.getTableById(tableID);
             oldTable.setAvailable(false);
 
-            Table newTable = new Table(name, seats, true);
+            Table newTable = new Table(name, Integer.parseInt(seats), true);
             databaseService.addTable(newTable);
 
             databaseService.updateTable(tableID, oldTable);
@@ -624,21 +624,32 @@ public class KassensystemManagerController implements Initializable
             editTableDLabel.setText("");
 			editTableSeatsField.clear();
         }
-        else
+        else if(tableIDText.isEmpty())
             AlertBox.display("Error", "Bitte einen Tisch zum Bearbeiten auswählen.");
-    }
+    	else if(name.isEmpty())
+			AlertBox.display("Error", "Bitte eine Bezeichnung eingeben.");
+    	else if(seats.isEmpty())
+			AlertBox.display("Error", "Bitte einen Anzahl an Sitzen eingeben.");
+	}
 
     public void addTable(ActionEvent actionEvent)
 	{
         String name = addTableNameField.getCharacters().toString();
-        int seats = Integer.parseInt(addTableSeatsField.getCharacters().toString());
+        String seats = addTableSeatsField.getCharacters().toString();
 
-        Table newTable = new Table(name, seats, true);
-        databaseService.addTable(newTable);
+		if (!name.isEmpty() && !seats.isEmpty())
+		{
+			Table newTable = new Table(name, Integer.parseInt(seats), true);
+			databaseService.addTable(newTable);
 
-        this.refreshTableData();
-        addTableNameField.clear();
-		addTableSeatsField.clear();
+			this.refreshTableData();
+			addTableNameField.clear();
+			addTableSeatsField.clear();
+		}
+		else if(name.isEmpty())
+			AlertBox.display("Error", "Bitte einen Namen eingeben.");
+		else if(seats.isEmpty())
+			AlertBox.display("Error", "Bitte eine Anzahl von Sitzen eingeben.");
     }
 
 	public void addTableKeyPressed(KeyEvent keyEvent)

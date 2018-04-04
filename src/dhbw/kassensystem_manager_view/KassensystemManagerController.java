@@ -790,8 +790,9 @@ public class KassensystemManagerController implements Initializable
 			if(sure)
 			{
 				waiter.setEmployed(false);
-				// Logindaten löschen
-				databaseService.deleteLogindata(waiter.getWaiterID());
+				// Logindaten löschen, wenn welche existieren
+				if(databaseService.existsLogindataWithWaiterID(waiter.getWaiterID()))
+					databaseService.deleteLogindata(waiter.getWaiterID());
 			}
 		}
 		else
